@@ -1,0 +1,12 @@
+.element__btn-like {
+  width: 22px;
+  height: 19px;
+  background: url(../../../images/heart.svg) center center no-repeat;
+  background-size: contain;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.element__btn-like:hover {
+  opacity: .5;
+}
