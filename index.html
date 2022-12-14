@@ -17,10 +17,10 @@
       <section class="profile">
         <img src="images/avatar.jpg" class="avatar profile__avatar" alt="Жак-Ив Кусто">
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто<a href="#" class="btn_style_edit profile__btn_style_edit"></a></h1>
+          <h1 class="profile__name">Жак-Ив Кусто<a href="#" class="btn btn_style_edit profile__btn_style_edit"></a></h1>
           <p class="profile__vocation">Исследователь океана</p>
         </div>
-        <a href="#" class="btn_style_add profile__btn_style_add"></a>
+        <a href="#" class="btn btn_style_add profile__btn_style_add"></a>
       </section>
       <section>
         <ul class="elements">
@@ -72,6 +72,16 @@
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </main>
+  </div>
+  <div class="popup popup_opened_">
+    <div class="popup__container">
+      <h2 class="popup__heading">Редоктировать профиль</h2>
+      <form action="#" class="form" method="post">
+        <input type="text" class="form__textfield popup__textfield" value="" name="name" id="name" placeholder="Имя">
+        <input type="text" class="form__textfield popup__textfield" value="" name="vocation" id="vocation" placeholder="О себе">
+        <button class="btn btn_style_submit form__btn" type="submit">Сохранить</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>

@@ -1,15 +1,7 @@
 .btn_style_add {
   width: 150px;
   height: 50px;
-  border: solid 1px #fff;
-  display: block;
   background: #000 url(../../../images/plus.svg) center center no-repeat;
-  transition: opacity 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.btn_style_add:hover {
-  opacity: .8;
 }
 
 .profile__btn_style_add {
