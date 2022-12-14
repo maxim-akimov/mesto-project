@@ -1,10 +1,23 @@
 .btn_style_edit {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
   background: #000 url(../../../images/pen.svg) center center no-repeat;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
 }
+
+.profile__btn {
+
+}
+
 .profile__btn_style_edit {
   margin-left: 18px;
 }
 
+@media screen and (max-width: 500px) {
+  .profile__btn_style_edit {
+    height: 18px;
+    margin-left: 10px;
+    margin-right: -28px;
+    width: 18px;
+  }
+}

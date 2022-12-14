@@ -1,8 +1,17 @@
 .profile {
-  width: 100%;
-  color: #fff;
-  display: flex;
   align-items: center;
+  box-sizing: border-box;
+  color: #fff;
   column-gap: 30px;
+  display: flex;
   padding: 40px 0 50px 0;
+  width: 100%;
 }
+
+@media screen and (max-width: 500px) {
+  .profile {
+    flex-direction: column;
+    padding: 42px 19px 36px 19px;
+  }
+}
+F

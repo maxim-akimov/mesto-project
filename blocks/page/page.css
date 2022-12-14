@@ -2,8 +2,9 @@
   box-sizing: border-box;
   font-family: Inter, Arial, sans-serif;
   font-weight: normal;
-  margin: 0 auto;
   max-width: 880px;
+  margin: 0 auto;
+  width: 100%;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: 100%;

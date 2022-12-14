@@ -1,15 +1,14 @@
 .form__textfield {
-  padding: 0;
-  margin: 0;
-  font-weight: 400;
-  font-size: 14px;
-  color: #000;
-  box-sizing: border-box;
-  padding-bottom: 9px;
   border: 1px solid transparent;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  width: 100%;
+  box-sizing: border-box;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
   height: 27px;
+  margin: 0;
+  padding: 0 0 9px 0;
+  width: 100%;
 }
 
 .form__textfield:focus {

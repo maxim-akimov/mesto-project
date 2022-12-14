@@ -1,24 +1,18 @@
 .popup__container {
-  box-sizing: border-box;
   background-color: #fff;
   border-radius: 10px;
-  width: 100%;
-  max-width: 430px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  max-width: 430px;
   padding: 34px 36px 36px 37px;
   position: relative;
+  width: 100%;
 }
 
-.popup__container::after {
-  content: "";
-  display: block;
-  width: 32px;
-  height: 32px;
-  background: url(../../../images/close.svg) no-repeat;
-  background-size: contain;
-  position: absolute;
-  left: 100%;
-  bottom: 100%;
-  margin: 0 0 8px 8px;
+@media screen and (max-width: 500px) {
+  .popup__container {
+    margin: 0 19px;
+    padding: 25px 22px;
+  }
 }

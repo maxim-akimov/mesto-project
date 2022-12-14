@@ -1,10 +1,25 @@
 .elements {
+  box-sizing: border-box;
+  /*grid-template-columns: repeat(3, 282px);*/
   display: grid;
-  grid-template-columns: repeat(3, 282px);
-  grid-template-rows: repeat(2, 361px);
-  width: 100%;
+  /*grid-template-rows: repeat(2, 361px);*/
   grid-column-gap: 17px;
   grid-row-gap: 20px;
-  padding: 0;
+  grid-template-columns: repeat(3, 1fr);
   margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .elements {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .elements {
+    grid-template-columns: 1fr;
+    padding: 0 19px;
+  }
 }

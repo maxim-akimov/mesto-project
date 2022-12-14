@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="`ru`">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,79 +9,82 @@
   <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="layout">
-  <div class="page">
-    <header class="header">
-      <div class="header__logo"></div>
-    </header>
-    <main>
-      <section class="profile">
-        <img src="images/avatar.jpg" class="avatar profile__avatar" alt="Жак-Ив Кусто">
-        <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто<a href="#" class="btn btn_style_edit profile__btn_style_edit"></a></h1>
-          <p class="profile__vocation">Исследователь океана</p>
-        </div>
-        <a href="#" class="btn btn_style_add profile__btn_style_add"></a>
-      </section>
-      <section>
-        <ul class="elements">
-          <li class="element">
-            <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
-            <div class="element__caption">
-              <h3 class="element__heading">Карачаевск</h3>
-              <a href="#" class="element__btn-like"></a>
-            </div>
-          </li>
-          <li class="element">
-            <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-            <div class="element__caption">
-              <h3 class="element__heading">Гора Эльбрус</h3>
-              <a href="#" class="element__btn-like"></a>
-            </div>
-          </li>
-          <li class="element">
-            <img src="images/dombay.jpg" alt="Домбай" class="element__image">
-            <div class="element__caption">
-              <h3 class="element__heading">Домбай</h3>
-              <a href="#" class="element__btn-like"></a>
-            </div>
-          </li>
-          <li class="element">
-            <img src="images/elbrus-2.jpg" alt="Гора Эльбрус" class="element__image">
-            <div class="element__caption">
-              <h3 class="element__heading">Гора Эльбрус</h3>
-              <a href="#" class="element__btn-like"></a>
-            </div>
-          </li>
-          <li class="element">
-            <img src="images/dombay-2.jpg" alt="Домбай" class="element__image">
-            <div class="element__caption">
-              <h3 class="element__heading">Домбай</h3>
-              <a href="#" class="element__btn-like"></a>
-            </div>
-          </li>
-          <li class="element">
-            <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-            <div class="element__caption">
-              <h3 class="element__heading">Карачаево-Черкессия</h3>
-              <a href="#" class="element__btn-like"></a>
-            </div>
-          </li>
-        </ul>
-      </section>
-      <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
-      </footer>
-    </main>
+<div class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+  <main>
+    <section class="profile">
+      <img src="images/avatar.jpg" class="avatar profile__avatar" alt="Жак-Ив Кусто">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто<a href="#" class="btn btn_style_edit profile__btn profile__btn_style_edit"></a></h1>
+        <p class="profile__vocation">Исследователь океана</p>
+      </div>
+      <a href="#" class="btn btn_style_add profile__btn profile__btn_style_add"></a>
+    </section>
+    <section>
+      <ul class="elements">
+        <li class="element">
+          <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
+          <div class="element__caption">
+            <h3 class="element__heading">Карачаевск</h3>
+            <a href="#" class="element__btn-like element__btn-like_active"></a>
+          </div>
+        </li>
+        <li class="element">
+          <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
+          <div class="element__caption">
+            <h3 class="element__heading">Гора Эльбрус</h3>
+            <a href="#" class="element__btn-like"></a>
+          </div>
+        </li>
+        <li class="element">
+          <img src="images/dombay.jpg" alt="Домбай" class="element__image">
+          <div class="element__caption">
+            <h3 class="element__heading">Домбай</h3>
+            <a href="#" class="element__btn-like"></a>
+          </div>
+        </li>
+        <li class="element">
+          <img src="images/elbrus-2.jpg" alt="Гора Эльбрус" class="element__image">
+          <div class="element__caption">
+            <h3 class="element__heading">Гора Эльбрус</h3>
+            <a href="#" class="element__btn-like"></a>
+          </div>
+        </li>
+        <li class="element">
+          <img src="images/dombay-2.jpg" alt="Домбай" class="element__image">
+          <div class="element__caption">
+            <h3 class="element__heading">Домбай</h3>
+            <a href="#" class="element__btn-like"></a>
+          </div>
+        </li>
+        <li class="element">
+          <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
+          <div class="element__caption">
+            <h3 class="element__heading">Карачаево-Черкессия</h3>
+            <a href="#" class="element__btn-like"></a>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2022 Mesto Russia</p>
+  </footer>
+</div>
+<div class="popup popup_opened">
+  <div class="popup__container">
+    <h2 class="popup__heading">Редоктировать профиль</h2>
+    <form action="#" class="form" method="post">
+      <input type="text" class="form__textfield popup__textfield" value="Жак-Ив Кусто" name="name" id="name"
+             placeholder="Имя">
+      <input type="text" class="form__textfield popup__textfield" value="Исследователь океана" name="vocation"
+             id="vocation" placeholder="О себе">
+      <button class="btn btn_style_submit form__btn" type="submit">Сохранить</button>
+    </form>
+    <button class="popup__btn-close"></button>
   </div>
-  <div class="popup popup_opened_">
-    <div class="popup__container">
-      <h2 class="popup__heading">Редоктировать профиль</h2>
-      <form action="#" class="form" method="post">
-        <input type="text" class="form__textfield popup__textfield" value="" name="name" id="name" placeholder="Имя">
-        <input type="text" class="form__textfield popup__textfield" value="" name="vocation" id="vocation" placeholder="О себе">
-        <button class="btn btn_style_submit form__btn" type="submit">Сохранить</button>
-      </form>
-    </div>
-  </div>
+</div>
 </body>
 </html>
