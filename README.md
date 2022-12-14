@@ -8,5 +8,4 @@ grid-layout и др., верстка форм и полей, верстка мо
 HTML, CSS, БЭМ-методология, flexbox, grid-layout
 
 ## GitHub Pages
-
-
+https://maxim-akimov.github.io/mesto-project/
