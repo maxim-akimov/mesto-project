@@ -5,7 +5,7 @@
   gap: 16px 18px;
 }
 
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 600px) {
   .profile__info {
     padding-top: 27px;
     text-align: center;

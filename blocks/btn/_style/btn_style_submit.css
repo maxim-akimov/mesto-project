@@ -1,4 +1,6 @@
 .btn_style_submit {
+  border: none;
+  border-radius: 2px;
   font-size: 18px;
   line-height: 1.19;
   padding: 15px 0;
@@ -9,6 +11,7 @@
 @media screen and (max-width: 568px) {
   .btn_style_submit {
     font-size: 14px;
+    line-height: 1.21;
     padding: 14px 0;
   }
 }

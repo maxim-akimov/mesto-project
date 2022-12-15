@@ -3,7 +3,13 @@
   display: flex;
   padding: 66px 0 60px 0;
   width: 100%;
+}
 
+@media screen and (max-width: 920px) {
+  .footer {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
 }
 
 @media screen and (max-width: 568px) {
