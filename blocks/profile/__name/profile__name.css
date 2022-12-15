@@ -3,11 +3,10 @@
   font-weight: 500;
   line-height: 0.9;
   margin: 0;
-  padding-bottom: 16px;
   white-space: nowrap;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 568px) {
   .profile__name {
     font-size: 27px;
     line-height: 1.2;

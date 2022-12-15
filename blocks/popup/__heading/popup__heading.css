@@ -6,7 +6,7 @@
   padding-bottom: 48px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 568px) {
   .popup__heading {
     font-size: 18px;
     padding-bottom: 75px;
