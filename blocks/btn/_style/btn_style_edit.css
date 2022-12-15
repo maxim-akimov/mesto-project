@@ -5,19 +5,9 @@
   width: 24px;
 }
 
-.profile__btn {
-
-}
-
-.profile__btn_style_edit {
-  margin-left: 18px;
-}
-
-@media screen and (max-width: 500px) {
-  .profile__btn_style_edit {
+@media screen and (max-width: 568px) {
+  .btn_style_edit {
     height: 18px;
-    margin-left: 10px;
-    margin-right: -28px;
     width: 18px;
   }
 }

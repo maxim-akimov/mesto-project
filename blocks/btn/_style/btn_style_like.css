@@ -1,4 +1,4 @@
-.element__btn-like {
+.btn_style_like {
   background: url(../../../images/heart.svg) center center no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -7,6 +7,6 @@
   width: 22px;
 }
 
-.element__btn-like:hover {
+.btn_style_like:hover {
   opacity: .5;
 }

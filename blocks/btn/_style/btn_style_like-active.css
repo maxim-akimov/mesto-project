@@ -1,0 +1,4 @@
+.btn_style_like-active {
+  background: url(../../../images/heart_active.svg) center center no-repeat;
+  background-size: contain;
+}

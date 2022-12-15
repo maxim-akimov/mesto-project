@@ -1,6 +1,15 @@
-@media screen and (max-width: 500px) {
+.profile__info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, max-content));
+  grid-template-rows: repeat(2, minmax(min-content, max-content));
+  gap: 16px 18px;
+}
+
+@media screen and (max-width: 568px) {
   .profile__info {
     padding-top: 27px;
     text-align: center;
+    gap: 0 10px;
+    padding-left: 28px;
   }
 }

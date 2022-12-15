@@ -4,17 +4,3 @@
   height: 50px;
   width: 150px;
 }
-
-.profile__btn {
-}
-
-.profile__btn_style_add {
-  margin-left: auto;
-}
-
-@media screen and (max-width: 500px) {
-  .profile__btn_style_add {
-    margin: 36px 19px 0 19px;
-    width: 100%;
-  }
-}
