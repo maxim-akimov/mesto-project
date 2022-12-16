@@ -7,7 +7,7 @@
   margin-left: auto;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .btn_style_add {
     background-size: 16px;
     margin: 35px 19px 0 19px;

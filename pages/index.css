@@ -29,8 +29,6 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__btn-close/popup__btn-close.css);
 @import url(../blocks/profile/profile.css);
-@import url(../blocks/profile/__btn-edit/profile__btn-edit.css);
-@import url(../blocks/profile/__btn-add/profile__btn-add.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__vocation/profile__vocation.css);

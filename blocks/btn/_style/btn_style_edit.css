@@ -5,7 +5,7 @@
   margin-top: 15px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .btn_style_edit {
     height: 18px;
     width: 18px;
