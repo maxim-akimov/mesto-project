@@ -3,18 +3,20 @@
   background-color: rgba(0, 0, 0, .5);
   bottom: 0;
   box-sizing: border-box;
-  display: none;
+  display: flex;
   font-family: Inter, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
   font-weight: normal;
   justify-content: center;
   left: 0;
-  -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
   position: fixed;
   right: 0;
   text-rendering: optimizeLegibility;
+  visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   top: 0;
 }

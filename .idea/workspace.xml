@@ -5,26 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d05bc69-4316-49cd-9cc5-7780220a1d7a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nojekyll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/avatar/avatar.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/__avatar/profile__avatar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/btn/_style/btn_style_add.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/btn/_style/btn_style_add.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/btn/_style/btn_style_edit.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/btn/_style/btn_style_edit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/btn/_style/btn_style_like-active.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/btn/_style/btn_style_like-active.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/btn/_style/btn_style_submit.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/btn/_style/btn_style_submit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/btn/btn.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/btn/btn.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/elements/elements.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/elements.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/footer/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/footer/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/form/__textfield/form__textfield.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/form/__text-field/form__text-field.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/header/__logo/header__logo.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/header/__logo/header__logo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/header/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/header/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/__container/popup__container.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__container/popup__container.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/profile/__btn-add/profile__btn-add.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/profile/__btn-edit/profile__btn-edit.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/profile/__info/profile__info.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/__info/profile__info.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/profile/__name/profile__name.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/__name/profile__name.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/profile/__vocation/profile__vocation.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/__vocation/profile__vocation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/_closed/popup_closed.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/popup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
     </list>
@@ -38,6 +24,7 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -58,23 +45,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/OpenServer/open_server_panel_5_4_3/OSPanel/domains/practicum/mesto-project/blocks/popup",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\open_server_panel_5_4_3\OSPanel\domains\practicum\mesto-project\blocks\popup" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\OpenServer\open_server_panel_5_4_3\OSPanel\domains\practicum\mesto-project\blocks\profile" />
       <recent name="D:\OpenServer\open_server_panel_5_4_3\OSPanel\domains\practicum\mesto-project\blocks" />
@@ -101,6 +92,7 @@
       <workItem from="1670945013687" duration="10897000" />
       <workItem from="1671040275942" duration="10788000" />
       <workItem from="1671125595224" duration="8021000" />
+      <workItem from="1673374397318" duration="8438000" />
     </task>
     <servers />
   </component>

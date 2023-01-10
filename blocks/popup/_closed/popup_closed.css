@@ -1,0 +1,14 @@
+.popup_closed {
+  animation: hide-popup 0.2s ease-in-out forwards;
+}
+
+@keyframes hide-popup {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

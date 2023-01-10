@@ -1,3 +1,14 @@
 .popup_opened {
-  display: flex;
+  animation: show-popup 0.2s ease-in-out forwards;
+}
+
+@keyframes show-popup {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
 }
