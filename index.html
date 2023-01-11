@@ -34,7 +34,7 @@
 <div class="popup popup_action_edit-profile">
   <div class="popup__container">
     <h2 class="popup__heading">Редоктировать профиль</h2>
-    <form name="profile-edit" action="#" class="form" method="post">
+    <form name="profile-edit" action="#" class="form form_action_profile-edit" method="post">
       <input type="text" name="name" id="name" class="form__text-field" value="" placeholder="Имя">
       <input type="text" name="vocation" id="vocation" class="form__text-field" value="" placeholder="О себе">
       <button class="btn btn_style_submit" type="submit">Сохранить</button>
@@ -42,8 +42,20 @@
     <button class="popup__btn-close" type="button"></button>
   </div>
 </div>
+<div class="popup popup_action_add-card">
+  <div class="popup__container">
+    <h2 class="popup__heading">Новое место</h2>
+    <form name="add-card" action="#" class="form form_action_add-card" method="post">
+      <input type="text" name="place-name" id="place-name" class="form__text-field" value="" placeholder="Название">
+      <input type="text" name="place-link" id="place-link" class="form__text-field" value="" placeholder="Ссылка на картинку">
+      <button class="btn btn_style_submit" type="submit">Создать</button>
+    </form>
+    <button class="popup__btn-close" type="button"></button>
+  </div>
+</div>
 <template id="card-template">
   <li class="element">
+    <button type="button" class="btn btn_style_delete" aria-label="Удалить"></button>
     <img class="element__image">
     <div class="element__caption">
       <h3 class="element__heading"></h3>
@@ -53,6 +65,7 @@
 </template>
 <script src="blocks/popup/popup.js"></script>
 <script src="blocks/popup/_action/popup_action_edit-profile.js"></script>
+<script src="blocks/popup/_action/popup_action_add-card.js"></script>
 <script src="blocks/btn/btn.js"></script>
 <script src="blocks/elements/elements.js"></script>
 </body>

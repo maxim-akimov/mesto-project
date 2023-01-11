@@ -1,7 +1,7 @@
 const editButton = document.querySelector('.btn_style_edit');
 const nameElement = document.querySelector('.profile__name');
 const vocationElement = document.querySelector('.profile__vocation');
-const formElement = document.querySelector('.form');
+const formElement = document.querySelector('.form_action_profile-edit');
 const nameField = formElement.querySelector('#name');
 const vocationField = formElement.querySelector('#vocation');
 

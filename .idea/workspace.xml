@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d05bc69-4316-49cd-9cc5-7780220a1d7a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blocks/popup/_closed/popup_closed.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup/popup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/btn/_style/btn_style_delete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/_action/popup_action_add-card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/element/element.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/element.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/elements/elements.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/elements.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/_action/popup_action_edit-profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_action/popup_action_edit-profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
     </list>
@@ -51,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/OpenServer/open_server_panel_5_4_3/OSPanel/domains/practicum/mesto-project/blocks/popup",
+    "last_opened_file_path": "D:/OpenServer/open_server_panel_5_4_3/OSPanel/domains/practicum/mesto-project/blocks/btn/_style",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -64,6 +64,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\open_server_panel_5_4_3\OSPanel\domains\practicum\mesto-project\blocks\btn\_style" />
+      <recent name="D:\OpenServer\open_server_panel_5_4_3\OSPanel\domains\practicum\mesto-project\blocks\popup\_action" />
       <recent name="D:\OpenServer\open_server_panel_5_4_3\OSPanel\domains\practicum\mesto-project\blocks\popup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -92,7 +94,7 @@
       <workItem from="1670945013687" duration="10897000" />
       <workItem from="1671040275942" duration="10788000" />
       <workItem from="1671125595224" duration="8021000" />
-      <workItem from="1673374397318" duration="8438000" />
+      <workItem from="1673374397318" duration="14378000" />
     </task>
     <servers />
   </component>
