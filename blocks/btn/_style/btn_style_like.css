@@ -1,5 +1,7 @@
 .btn_style_like {
-  background: url(../../../images/heart.svg) center center no-repeat;
+  background: url(../../../images/heart.svg);
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
   height: 19px;

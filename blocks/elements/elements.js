@@ -38,7 +38,7 @@ const initialCards = [
   }
 
   function cardInsert(obj) {
-    document.querySelector('.elements').prepend(cardElement)
+    document.querySelector('.elements').prepend(obj)
   } 
 
   for(let i = 0; i < initialCards.length; i++) {
