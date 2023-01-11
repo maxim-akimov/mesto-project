@@ -1,4 +1,4 @@
-.popup_closed {
+.popup_state_closed {
   animation: hide-popup 0.2s ease-in-out forwards;
 }
 

@@ -24,57 +24,14 @@
       <button type="button" class="btn btn_style_add" aria-label="Добавить"></button>
     </section>
     <section>
-      <ul class="elements">
-        <li class="element">
-          <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
-          <div class="element__caption">
-            <h3 class="element__heading">Карачаевск</h3>
-            <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-          <div class="element__caption">
-            <h3 class="element__heading">Гора Эльбрус</h3>
-            <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/dombay.jpg" alt="Домбай" class="element__image">
-          <div class="element__caption">
-            <h3 class="element__heading">Домбай</h3>
-            <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/elbrus-2.jpg" alt="Гора Эльбрус" class="element__image">
-          <div class="element__caption">
-            <h3 class="element__heading">Гора Эльбрус</h3>
-            <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/dombay-2.jpg" alt="Домбай" class="element__image">
-          <div class="element__caption">
-            <h3 class="element__heading">Домбай</h3>
-            <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
-          <div class="element__caption">
-            <h3 class="element__heading">Карачаево-Черкессия</h3>
-            <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="elements"></ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
 </div>
-<div class="popup">
+<div class="popup popup_action_edit-profile">
   <div class="popup__container">
     <h2 class="popup__heading">Редоктировать профиль</h2>
     <form name="profile-edit" action="#" class="form" method="post">
@@ -85,6 +42,18 @@
     <button class="popup__btn-close" type="button"></button>
   </div>
 </div>
-<script src="pages/script.js"></script>
+<template id="card-template">
+  <li class="element">
+    <img class="element__image">
+    <div class="element__caption">
+      <h3 class="element__heading"></h3>
+      <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
+    </div>
+  </li>
+</template>
+<script src="blocks/popup/popup.js"></script>
+<script src="blocks/popup/_action/popup_action_edit-profile.js"></script>
+<script src="blocks/btn/btn.js"></script>
+<script src="blocks/elements/elements.js"></script>
 </body>
 </html>

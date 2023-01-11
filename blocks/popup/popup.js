@@ -1,49 +1,19 @@
-const nameElement = document.querySelector('.profile__name');
-const vocationElement = document.querySelector('.profile__vocation');
-const editButton = document.querySelector('.btn_style_edit');
-const popup = document.querySelector('.popup');
+function showPopup(selector) {
+    const popup = document.querySelector(selector);
+    const closeButton = popup.querySelector('.popup__btn-close');
 
-const closeButton = popup.querySelector('.popup__btn-close');
-const submitButton = popup.querySelector('.btn_style_submit');
-const nameField = popup.querySelector('#name');
-const vocationField = popup.querySelector('#vocation');
+    popup.classList.remove('popup_state_closed');
+    popup.classList.add('popup_state_opened');
 
-
-
-function showPopup() {
-    popup.classList.remove('popup_closed');
-    popup.classList.add('popup_opened');
+    closeButton.addEventListener('click', hidePopup);
 }
 
-
-
-function hidePopup() {
-    popup.classList.remove('popup_opened');
-    popup.classList.add('popup_closed');
+function hidePopup(evt) {
+    const popup = evt.target.closest('.popup');
+    
+    popup.classList.remove('popup_state_opened');
+    popup.classList.add('popup_state_closed');
 }
 
-
-
-function submitFormHandler(evt) {
-    evt.preventDefault();
-
-    const nameValue = nameField.value;
-    const vocationValue = vocationField.value;
-
-    nameElement.textContent = nameValue;
-    vocationElement.textContent = vocationValue;
-
-    hidePopup();
-}
-
-editButton.addEventListener('click', function () {
-    nameField.value = nameElement.textContent;
-    vocationField.value = vocationElement.textContent;
-
-    showPopup();
-})
-
-closeButton.addEventListener('click', hidePopup);
-submitButton.addEventListener('click', submitFormHandler)
 
 

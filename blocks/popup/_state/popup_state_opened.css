@@ -1,4 +1,4 @@
-.popup_opened {
+.popup_state_opened {
   animation: show-popup 0.2s ease-in-out forwards;
 }
 
