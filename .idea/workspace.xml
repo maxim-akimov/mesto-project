@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d05bc69-4316-49cd-9cc5-7780220a1d7a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blocks/btn/_style/btn_style_delete.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup/_action/popup_action_add-card.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__figcaption/popup__figcaption.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__figure/popup__figure.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__image/popup__image.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/element/element.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/element.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/elements/elements.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/elements.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/_action/popup_action_edit-profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_action/popup_action_edit-profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/btn/btn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/element/__image/element__image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/__image/element__image.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/elements/elements.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__btn-close/popup__btn-close.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__btn-close/popup__btn-close.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/_action/popup_action_add-card.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/_action/popup_action_edit-profile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
     </list>
@@ -23,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -94,7 +101,7 @@
       <workItem from="1670945013687" duration="10897000" />
       <workItem from="1671040275942" duration="10788000" />
       <workItem from="1671125595224" duration="8021000" />
-      <workItem from="1673374397318" duration="14378000" />
+      <workItem from="1673374397318" duration="19353000" />
     </task>
     <servers />
   </component>

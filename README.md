@@ -5,7 +5,7 @@
 grid-layout и др., верстка форм и полей, верстка модального окна.
 
 ## Технологии
-HTML, CSS, БЭМ-методология, flexbox, grid-layout
+HTML, CSS, ОфмфЫскшзеБЭМ-методология, flexbox, grid-layout
 
 ## GitHub Pages
 https://maxim-akimov.github.io/mesto-project/
