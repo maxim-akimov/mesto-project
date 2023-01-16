@@ -1,5 +1,6 @@
 .popup {
   align-items: center;
+  animation: hide-popup 0.2s linear forwards;
   background-color: rgba(0, 0, 0, .5);
   bottom: 0;
   box-sizing: border-box;
@@ -12,11 +13,22 @@
   position: fixed;
   right: 0;
   text-rendering: optimizeLegibility;
+  top: 0;
   visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
-  top: 0;
+}
+
+@keyframes hide-popup {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

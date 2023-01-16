@@ -8,7 +8,7 @@ const nameElement = document.querySelector('.profile__name');
 //Элемент для отображения информации "о себе" на странице
 const vocationElement = document.querySelector('.profile__vocation');
 
-//Моlальное окно редактирования профиля
+//Модальное окно редактирования профиля
 const popupProfileEdit = document.querySelector('.popup_action_edit-profile');
 
 //Кнопка открытия модального окна
@@ -20,12 +20,15 @@ const nameInput = popupProfileEdit.querySelector('#profile-name');
 //Поле ввода информации "О себе"
 const vocationInput = popupProfileEdit.querySelector('#profile-vocation');
 
+//Форма
+const formProfileEdit = document.forms['profile-edit'];
+
 
 
 /**
  * Добавление новой карточки
  */
-//Моlальное окно добавления карточки
+//Модальное окно добавления карточки
 const popupCardAdd = document.querySelector('.popup_action_add-card');
 
 //Кнопка открытия модального окна добавления новой карточки
@@ -35,7 +38,16 @@ const addCardButton = document.querySelector('.btn_style_add');
 const cardTemplate = document.querySelector('#card-template').content;
 
 //Контейнер для карточек
-const cardContainer = document.querySelector('.elements')
+const cardContainer = document.querySelector('.elements');
+
+//Данные формы
+const formCardAdd = document.forms['card-add'];
+
+//Поле ввода названия нового места
+const placeNameInput = popupCardAdd.querySelector('#place-name');
+
+//Поле ввода ссылки на изображение нового места
+const placeLinkInput = popupCardAdd.querySelector('#place-name');
 
 
 
@@ -43,7 +55,7 @@ const cardContainer = document.querySelector('.elements')
  * Просмотр карточек с картинками в модальном окне
  */
 
-//Моlальное окно просмотра картинок
+//Модальное окно просмотра картинок
 const popupPictureView = document.querySelector('.popup_action_show-card');
 
 //Элемент popup__image модального окна просмотра
@@ -82,49 +94,52 @@ const initialCards = [
 
 
 /**
- * Закрытие модальных окон
+ * Работа модальных окон
  */
 //Коллекция всех кнопок закрытия
 const closeButtons = document.querySelectorAll('.popup__btn-close');
 
 
 
-/**
- * Установка слушателя и обработчика событий на кнопки закрытия модальных окон 
- */
+//Установка слушателя и обработчика событий на кнопки закрытия модальных окон
 closeButtons.forEach(button => {
     button.addEventListener('click', closePopup)
 });
 
 
 
-/**
- * Функция добавления модификатора открытого окна
- */
+//Функция реализации закрытия модального окна
+function closePopup(evt) {
+    const popup = evt.target.closest('.popup');
+    if (popup) {
+        popup.classList.remove('popup_opened');
+    }
+}
+
+
+
+//Функция добавления модификатора открытого окна
 function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
 
 
-/**
- * Открытие модального окна для просмотра изображений
- */
+//Функция открытия модального окна для просмотра изображений
 function openPicturePopup(name, link) {
     popupImageElement.src = link;
     popupImageElement.alt = name;
+    popupFigcaptionElement.textContent = name;
 
     openPopup(popupPictureView);
 }
 
 
 
-/**
- * Функция открытия модального окна для редактирования профиля
- */
+//Функция открытия модального окна для редактирования профиля
 function openProfileEditPopup() {
-    nameInput.value = nameElement;
-    vocationInput = vocationElement;
+    nameInput.value = nameElement.textContent;
+    vocationInput.value = vocationElement.textContent;
 
     openPopup(popupProfileEdit);
 }
@@ -132,17 +147,9 @@ function openProfileEditPopup() {
 
 
 /**
- * Функция открытия модального окна для добавления новой карточки
+ * Подготовка карточки и вставка на страницу
  */
-function openCardAddPopup() {
-    openPopup(popupCardAdd);
-}
-
-
-
-/**
- * Подготовка разметки карточки
- */
+//Подготовка разметки карточки
 function buildCard(name, link) {
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
@@ -157,6 +164,8 @@ function buildCard(name, link) {
     return cardElement;
 }
 
+
+
 //Вставка карточки в разметку страницы
 function prependCard(cardObject) {
     cardContainer.prepend(cardObject)
@@ -164,15 +173,12 @@ function prependCard(cardObject) {
 
 
 
-/**
- * Начальная загрузка карточек при открытии страницы
- **/
-
-//Создание карточки из каждого элемента массива
-for (let i = 0; i < initialCards.length; i++) {
-    const card = buildCard(initialCards[i].name, initialCards[i].link);
+//Создание карточки из каждого элемента массива при загрузке страницы
+initialCards.forEach(item => {
+    const card = buildCard(item.name, item.link);
     prependCard(card);
-}
+});
+
 
 
 /**
@@ -185,77 +191,68 @@ function deleteCard(evt) {
 }
 
 
-
-
-//Закрытие окна
-function closePopup(evt) {
-    const popup = evt.target.closest('.popup');
-
-    popup.classList.remove('popup_opened');
+/**
+ * Лайк
+ */
+function toggleLike(evt) {
+    evt.target.classList.toggle('btn_style_like-active');
 }
 
 
 
 /**
- * Добавление новой карточки
+ * Обработка отправки форм
  **/
-
-
-//Обработка отправки формы
-function submitAddCardFormHandler(evt) {
+//Обработка отправки формы создания новой карточки
+function handleCardAddForm(evt) {
     evt.preventDefault();
-    const nameAddCardField = formAddCardElement.querySelector('#place-name');
-    const linkAddCardField = formAddCardElement.querySelector('#place-link');
 
-    if(nameAddCardField.value && linkAddCardField.value) {
-        const card = buildCard(nameAddCardField.value, linkAddCardField.value)
+    if(placeNameInput.value && placeLinkInput.value) {
+        const card = buildCard(placeNameInput.value, placeLinkInput.value)
         prependCard(card);
 
-        hidePopup(evt);
-
-        nameAddCardField.value = '';
-        linkAddCardField.value = '';
+        closePopup(evt);
+        formCardAdd.reset();
     }
 }
 
-//Открытие модального окна для добавления карточки
-addCardButton.addEventListener('click', () => openPopup(popupCardAdd))
-
-//Прослушивание события отправки формы
-//formAddCardElement.addEventListener('submit', submitAddCardFormHandler)
 
 
+//Обработка отправки формы редактирования профиля
+function handleEditProfileForm(evt) {
+    evt.preventDefault();
 
+    if (nameInput.value && vocationInput.value) {
+        nameElement.textContent = nameInput.value;
+        vocationElement.textContent = vocationInput.value;
+    }
 
-
-
-
+    closePopup(evt);
+    formProfileEdit.reset();
+}
 
 
 
 /**
- * Редактирование профиля
- **/
-//Обработка отправки формы
-function submitFormHandler(evt) {
-    evt.preventDefault();
+ * Назначение слушателей событий элементам страницы
+ */
+//Нажатие на кнопку редактирования профиля
+editProfileButton.addEventListener('click', () => openProfileEditPopup(popupProfileEdit));
 
-    nameElement.textContent = nameField.value;
-    vocationElement.textContent = vocationField.value;
 
-    hidePopup(evt);
-}
 
-//Открытие модального окна для редактирования профиля
-editProfileButton.addEventListener('click', function () {
-    nameInput.value = nameElement.textContent;
-    vocationInput.value = vocationElement.textContent;
+//Отправка формы редактирования профиля
+formProfileEdit.addEventListener('submit', handleEditProfileForm);
 
-    openPopup(popupProfileEdit);
-})
 
-//Прослушивание события отправки формы
-//formElement.addEventListener('submit', submitFormHandler)
+
+//Нажатие на кнопку добавления новой карточки
+addCardButton.addEventListener('click', () => openPopup(popupCardAdd));
+
+
+
+//Отправка формы добавления новой карточки
+formCardAdd.addEventListener('submit', handleCardAddForm);
 
 
 
@@ -273,10 +270,7 @@ editProfileButton.addEventListener('click', function () {
 
 
 
-function toggleLike(evt) {
-    const buttonLikeElement = evt.target;
-    buttonLikeElement.classList.toggle('btn_style_like-active');
-}
+
 
 
 

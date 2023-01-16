@@ -1,5 +1,5 @@
-.popup_state_opened {
-  animation: show-popup 0.2s ease-in-out forwards;
+.popup_opened {
+  animation: show-popup 0.2s linear forwards;
 }
 
 @keyframes show-popup {
