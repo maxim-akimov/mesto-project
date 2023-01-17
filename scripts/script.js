@@ -47,7 +47,7 @@ const formCardAdd = document.forms['card-add'];
 const placeNameInput = popupCardAdd.querySelector('#place-name');
 
 //Поле ввода ссылки на изображение нового места
-const placeLinkInput = popupCardAdd.querySelector('#place-name');
+const placeLinkInput = popupCardAdd.querySelector('#place-link');
 
 
 
@@ -103,16 +103,23 @@ const closeButtons = document.querySelectorAll('.popup__btn-close');
 
 //Установка слушателя и обработчика событий на кнопки закрытия модальных окон
 closeButtons.forEach(button => {
-    button.addEventListener('click', closePopup)
+    button.addEventListener('click', hidePopup)
 });
 
 
 
+//Функция удаления модификатора открытого окна
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
+
+
+
 //Функция реализации закрытия модального окна
-function closePopup(evt) {
+function hidePopup(evt) {
     const popup = evt.target.closest('.popup');
     if (popup) {
-        popup.classList.remove('popup_opened');
+        closePopup(popup);
     }
 }
 
@@ -211,7 +218,7 @@ function handleCardAddForm(evt) {
         const card = buildCard(placeNameInput.value, placeLinkInput.value)
         prependCard(card);
 
-        closePopup(evt);
+        hidePopup(evt);
         formCardAdd.reset();
     }
 }
@@ -227,7 +234,7 @@ function handleEditProfileForm(evt) {
         vocationElement.textContent = vocationInput.value;
     }
 
-    closePopup(evt);
+    hidePopup(evt);
     formProfileEdit.reset();
 }
 
@@ -256,7 +263,30 @@ formCardAdd.addEventListener('submit', handleCardAddForm);
 
 
 
+/**
+ * Предотвращение автоматического срабатывания анимации 
+ * при загрузке страницы в Google Chrome
+ * 
+ * Поскольку обнаружилась проблема при открытии страницы в Google Chrome - при 
+ * загрузке автоматически воспроизводились анимации, (открывались и сразу же 
+ * анимированно скрывались все модальные окна), было принято решение 
+ * изначально скрыть элементы неанимируемым свойством display до момента полной 
+ * загрузки страницы, а после вернуть display этих элементов в запланированное
+ * состояние.
+ * 
+ * Для блоков с классом popup в css определен display: none
+ * После завершения загрузки возвращаем display в нормальное состояние -
+ * display: flex - для корректного отображения модальных окон их анимации.
+ */
+function preventChromeLoadTransition() {
+    const popups = document.querySelectorAll('.popup');
 
+    popups.forEach(item => {
+        item.style.display = 'flex';
+    })
+}
+
+window.addEventListener('load', preventChromeLoadTransition)
 
 
 
