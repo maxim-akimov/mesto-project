@@ -1,14 +1,4 @@
 .popup_opened {
-  animation: show-popup 0.2s linear forwards;
-}
-
-@keyframes show-popup {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-  100% {
-    opacity: 1;
-    visibility: visible;
-  }
+  opacity: 1;
+  visibility: visible;
 }
