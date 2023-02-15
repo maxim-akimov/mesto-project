@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d05bc69-4316-49cd-9cc5-7780220a1d7a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blocks/btn/_disabled/btn_disabled.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/validate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +101,9 @@
       <workItem from="1676050747716" duration="624000" />
       <workItem from="1676051799274" duration="34686000" />
       <workItem from="1676404082057" duration="14847000" />
-      <workItem from="1676494297148" duration="1212000" />
+      <workItem from="1676494297148" duration="1935000" />
+      <workItem from="1676496380876" duration="1024000" />
+      <workItem from="1676497976773" duration="415000" />
     </task>
     <servers />
   </component>

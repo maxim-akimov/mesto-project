@@ -49,14 +49,14 @@ function showInputError(formElement, inputElement, errorMessage, options) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.add(options.inputErrorClass);
-    errorElement.classList.add(options.errorClass);
+    errorElement.classList.add(`${options.errorClass}_visible`);
     errorElement.textContent = errorMessage;
 }
 
 function hideInputError(formElement, inputElement, options) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(options.inputErrorClass);
-    errorElement.classList.remove(options.errorClass);
+    errorElement.classList.remove(`${options.errorClass}_visible`);
     errorElement.textContent = '';
 }
 
