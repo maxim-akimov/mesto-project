@@ -1,5 +1,9 @@
 import { buildCard, prependCard } from "./card";
 
+
+export const popups = document.querySelectorAll('.popup');
+
+
 /**
  * Редактирование профиля, отображение информации в профиле
  */
@@ -57,33 +61,35 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
+
+//todo перенести в index.js
 //Отправка формы добавления новой карточки
 formCardAdd.addEventListener('submit', handleCardAddForm);
 
-/*
-if (evt.target.classList.contains('popup') ||
-    evt.target.classList.contains('popup__btn-close')) {
-    evt.currentTarget.classList.remove('popup_opened');
-}
-if(evt.key === 'Escape') {
-    document.querySelector('.popup_opened').classList.remove('popup_opened');
-}
- */
 
 
 //Функция реализации закрытия модального окна
 export function hidePopup(evt) {
-    const popup = evt.target.closest('.popup');
-    if (popup) {
-        closePopup(popup);
+    const openedPopup = document.querySelector('.popup_opened');
+    if(evt.key === 'Escape' && openedPopup) {
+        closePopup(openedPopup);
+    } else if((!evt.target.closest('.popup__container') &&
+        !evt.target.closest('.popup__figure')) ||
+        evt.target.classList.contains('popup__btn-close')) {
+        const popup = evt.target.closest('.popup');
+        if (popup) {
+            closePopup(popup);
+        }
     }
 }
+
 
 
 //Функция добавления модификатора открытого окна
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
+
 
 
 //Функция открытия модального окна для просмотра изображений
@@ -96,6 +102,7 @@ export function openPicturePopup(name, link) {
 }
 
 
+
 //Функция открытия модального окна для редактирования профиля
 export function openProfileEditPopup() {
     formProfileEdit.profileName.value = nameElement.textContent;
@@ -103,6 +110,7 @@ export function openProfileEditPopup() {
 
     openPopup(popupProfileEdit);
 }
+
 
 
 //Обработка отправки формы создания новой карточки
@@ -117,6 +125,7 @@ function handleCardAddForm(evt) {
         formCardAdd.reset();
     }
 }
+
 
 
 //Обработка отправки формы редактирования профиля

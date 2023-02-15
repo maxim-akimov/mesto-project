@@ -1,5 +1,5 @@
 import './styles/index.css';
-import { addCardButton, editProfileButton, closeButtons, popupProfileEdit, popupCardAdd ,formProfileEdit,
+import { popups, addCardButton, editProfileButton, closeButtons, popupProfileEdit, popupCardAdd ,formProfileEdit,
     openPopup, openProfileEditPopup, handleEditProfileForm, hidePopup } from './components/modal.js';
 import { initialCards, buildCard, prependCard } from "./components/card";
 import { enableValidation} from "./components/validate";
@@ -18,9 +18,10 @@ addCardButton.addEventListener('click', () => openPopup(popupCardAdd));
 formProfileEdit.addEventListener('submit', handleEditProfileForm);
 
 //Установка слушателя и обработчика событий на кнопки закрытия модальных окон
-closeButtons.forEach(button => {
-    button.addEventListener('click', hidePopup)
-});
+popups.forEach(popup => {
+    popup.addEventListener('click', hidePopup)
+})
+window.addEventListener('keyup', hidePopup);
 
 
 /**

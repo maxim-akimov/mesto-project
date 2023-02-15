@@ -36,15 +36,17 @@
     <form name="profileEdit" action="#" class="form form_action_profile-edit" method="post" novalidate>
       <label for="profileName" class="form__label">
         <input type="text" name="profileName" id="profileName" class="form__input" value="" placeholder="Имя" required
-               minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$">
+               minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" data-error-message="Разрешены только латинские,
+               кириллические буквы, знаки дефиса и пробелы">
         <span class="form__input-error profileName-error"></span>
       </label>
       <label for="profileVocation" class="form__label">
         <input type="text" name="profileVocation" id="profileVocation" class="form__input" value=""
-               placeholder="О себе" required minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$">
+               placeholder="О себе" required minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
+               data-error-message="Разрешены только латинские,кириллические буквы, знаки дефиса и пробелы">
         <span class="form__input-error profileVocation-error"></span>
       </label>
-      <button class="btn btn_style_submit" type="submit">Сохранить</button>
+      <button class="btn btn_style_submit btn_disabled" disabled type="submit">Сохранить</button>
     </form>
     <button class="popup__btn-close" type="button"></button>
   </div>
@@ -53,9 +55,17 @@
   <div class="popup__container">
     <h2 class="popup__heading">Новое место</h2>
     <form name="cardAdd" action="#" class="form form_action_add-card" method="post">
-      <input type="text" name="placeName" id="place-name" class="form__input" value="" placeholder="Название">
-      <input type="text" name="placeLink" id="place-link" class="form__input" value=""
-             placeholder="Ссылка на картинку">
+      <label for="placeName" class="form__label">
+        <input type="text" name="placeName" id="placeName" class="form__input" value="" placeholder="Название" required
+               minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" data-error-message="Разрешены только латинские,
+               кириллические буквы, знаки дефиса и пробелы">
+        <span class="form__input-error placeName-error"></span>
+      </label>
+      <label for="placeLink" class="form__label">
+        <input type="url" name="placeLink" id="placeLink" class="form__input" value="" required
+               placeholder="Ссылка на картинку">
+        <span class="form__input-error placeLink-error"></span>
+      </label>
       <button class="btn btn_style_submit" type="submit">Создать</button>
     </form>
     <button class="popup__btn-close" type="button"></button>

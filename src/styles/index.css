@@ -1,7 +1,7 @@
 @import url(../../vendor/normalize.css);
 @import url(../../vendor/fonts.css);
 
-@import url(../../blocks/layout/layout.css);
+@import url(../blocks/layout/layout.css);
 @import url(../../blocks/page/page.css);
 
 @import url(../../blocks/profile/__avatar/profile__avatar.css);
@@ -12,6 +12,7 @@
 @import url(../../blocks/btn/_style/btn_style_submit.css);
 @import url(../../blocks/btn/_style/btn_style_like.css);
 @import url(../../blocks/btn/_style/btn_style_like-active.css);
+@import url(../../blocks/btn/_disabled/btn_disabled.css);
 @import url(../../blocks/popup/popup.css);
 @import url(../../blocks/elements/elements.css);
 @import url(../../blocks/element/element.css);
