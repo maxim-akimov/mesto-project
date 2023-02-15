@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d05bc69-4316-49cd-9cc5-7780220a1d7a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/blocks/form/__input-error/_visible/form__input-error_visible.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/form/__input-error/form__input-error.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/form/__label/form__label.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/form/__text-field/form__text-field.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +25,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -101,7 +106,8 @@
       <workItem from="1673374397318" duration="25694000" />
       <workItem from="1675705146235" duration="7143000" />
       <workItem from="1676050747716" duration="624000" />
-      <workItem from="1676051799274" duration="27195000" />
+      <workItem from="1676051799274" duration="34686000" />
+      <workItem from="1676404082057" duration="6038000" />
     </task>
     <servers />
   </component>

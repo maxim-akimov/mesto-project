@@ -18,14 +18,8 @@ export const popupProfileEdit = document.querySelector('.popup_action_edit-profi
 //Кнопка открытия модального окна
 export const editProfileButton = document.querySelector('.btn_style_edit');
 
-//Поле ввода имени
-const nameInput = popupProfileEdit.querySelector('#profile-name');
-
-//Поле ввода информации "О себе"
-const vocationInput = popupProfileEdit.querySelector('#profile-vocation');
-
 //Форма
-export const formProfileEdit = document.forms['profile-edit'];
+export const formProfileEdit = document.forms.profileEdit;
 
 
 
@@ -104,8 +98,8 @@ export function openPicturePopup(name, link) {
 
 //Функция открытия модального окна для редактирования профиля
 export function openProfileEditPopup() {
-    nameInput.value = nameElement.textContent;
-    vocationInput.value = vocationElement.textContent;
+    formProfileEdit.profileName.value = nameElement.textContent;
+    formProfileEdit.profileVocation.value = vocationElement.textContent;
 
     openPopup(popupProfileEdit);
 }
@@ -129,9 +123,9 @@ function handleCardAddForm(evt) {
 export function handleEditProfileForm(evt) {
     evt.preventDefault();
 
-    if (nameInput.value && vocationInput.value) {
-        nameElement.textContent = nameInput.value;
-        vocationElement.textContent = vocationInput.value;
+    if (formProfileEdit.profileName.value && formProfileEdit.profileVocation.value) {
+        nameElement.textContent = formProfileEdit.profileName.value;
+        vocationElement.textContent = formProfileEdit.profileVocation.value;
     }
 
     hidePopup(evt);

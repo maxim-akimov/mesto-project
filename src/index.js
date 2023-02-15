@@ -2,7 +2,7 @@ import './styles/index.css';
 import { addCardButton, editProfileButton, closeButtons, popupProfileEdit, popupCardAdd ,formProfileEdit,
     openPopup, openProfileEditPopup, handleEditProfileForm, hidePopup } from './components/modal.js';
 import { initialCards, buildCard, prependCard } from "./components/card";
-
+import { enableValidation} from "./components/validate";
 
 
 /**
@@ -31,6 +31,19 @@ initialCards.forEach(item => {
     const card = buildCard(item.name, item.link);
     prependCard(card);
 });
+
+
+/**
+ * Валидация форм
+ */
+enableValidation({
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.btn_style_submit',
+    inactiveButtonClass: 'btn_disabled',
+    inputErrorClass: 'form__input_error',
+    errorClass: 'form__input-error'
+})
 
 
 

@@ -8,68 +8,75 @@
   <title>Mesto Project</title>
 </head>
 <body class="layout">
-  <div class="page">
-    <header class="header">
-      <img src="<%=require('./../images/logo.svg')%>" class="header__logo" alt="Логотип Mesto Russia">
-    </header>
-    <main>
-      <section class="profile">
-        <img src="<%=require('./../images/avatar.jpg')%>" class="profile__avatar" alt="Жак-Ив Кусто">
-        <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="btn btn_style_edit" aria-label="Редактировать профиль"></button>
-          <p class="profile__vocation">Исследователь океана</p>
-        </div>
-        <button type="button" class="btn btn_style_add" aria-label="Добавить"></button>
-      </section>
-      <section>
-        <ul class="elements"></ul>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">© 2022 Mesto Russia</p>
-    </footer>
-  </div>
-  <div class="popup popup_action_edit-profile">
-    <div class="popup__container">
-      <h2 class="popup__heading">Редоктировать профиль</h2>
-      <form name="profile-edit" action="#" class="form form_action_profile-edit" method="post">
-        <input type="text" name="profile-name" id="profile-name" class="form__text-field" value="" placeholder="Имя">
-        <input type="text" name="profile-vocation" id="profile-vocation" class="form__text-field" value=""
-               placeholder="О себе">
-        <button class="btn btn_style_submit" type="submit">Сохранить</button>
-      </form>
-      <button class="popup__btn-close" type="button"></button>
-    </div>
-  </div>
-  <div class="popup popup_action_add-card">
-    <div class="popup__container">
-      <h2 class="popup__heading">Новое место</h2>
-      <form name="cardAdd" action="#" class="form form_action_add-card" method="post">
-        <input type="text" name="placeName" id="place-name" class="form__text-field" value="" placeholder="Название">
-        <input type="text" name="placeLink" id="place-link" class="form__text-field" value=""
-               placeholder="Ссылка на картинку">
-        <button class="btn btn_style_submit" type="submit">Создать</button>
-      </form>
-      <button class="popup__btn-close" type="button"></button>
-    </div>
-  </div>
-  <div class="popup popup_action_show-card">
-    <figure class="popup__figure">
-      <img src="" alt="" class="popup__image">
-      <figcaption class="popup__figcaption"></figcaption>
-      <button class="popup__btn-close" type="button"></button>
-    </figure>
-  </div>
-  <template id="card-template">
-    <li class="element">
-      <button type="button" class="btn btn_style_delete" aria-label="Удалить"></button>
-      <img class="element__image">
-      <div class="element__caption">
-        <h3 class="element__heading"></h3>
-        <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
+<div class="page">
+  <header class="header">
+    <img src="<%=require('./../images/logo.svg')%>" class="header__logo" alt="Логотип Mesto Russia">
+  </header>
+  <main>
+    <section class="profile">
+      <img src="<%=require('./../images/avatar.jpg')%>" class="profile__avatar" alt="Жак-Ив Кусто">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button type="button" class="btn btn_style_edit" aria-label="Редактировать профиль"></button>
+        <p class="profile__vocation">Исследователь океана</p>
       </div>
-    </li>
-  </template>
+      <button type="button" class="btn btn_style_add" aria-label="Добавить"></button>
+    </section>
+    <section>
+      <ul class="elements"></ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2022 Mesto Russia</p>
+  </footer>
+</div>
+<div class="popup popup_action_edit-profile">
+  <div class="popup__container">
+    <h2 class="popup__heading">Редоктировать профиль</h2>
+    <form name="profileEdit" action="#" class="form form_action_profile-edit" method="post" novalidate>
+      <label for="profileName" class="form__label">
+        <input type="text" name="profileName" id="profileName" class="form__input" value="" placeholder="Имя" required
+               minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$">
+        <span class="form__input-error profileName-error"></span>
+      </label>
+      <label for="profileVocation" class="form__label">
+        <input type="text" name="profileVocation" id="profileVocation" class="form__input" value=""
+               placeholder="О себе" required minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$">
+        <span class="form__input-error profileVocation-error"></span>
+      </label>
+      <button class="btn btn_style_submit" type="submit">Сохранить</button>
+    </form>
+    <button class="popup__btn-close" type="button"></button>
+  </div>
+</div>
+<div class="popup popup_action_add-card">
+  <div class="popup__container">
+    <h2 class="popup__heading">Новое место</h2>
+    <form name="cardAdd" action="#" class="form form_action_add-card" method="post">
+      <input type="text" name="placeName" id="place-name" class="form__input" value="" placeholder="Название">
+      <input type="text" name="placeLink" id="place-link" class="form__input" value=""
+             placeholder="Ссылка на картинку">
+      <button class="btn btn_style_submit" type="submit">Создать</button>
+    </form>
+    <button class="popup__btn-close" type="button"></button>
+  </div>
+</div>
+<div class="popup popup_action_show-card">
+  <figure class="popup__figure">
+    <img src="" alt="" class="popup__image">
+    <figcaption class="popup__figcaption"></figcaption>
+    <button class="popup__btn-close" type="button"></button>
+  </figure>
+</div>
+<template id="card-template">
+  <li class="element">
+    <button type="button" class="btn btn_style_delete" aria-label="Удалить"></button>
+    <img class="element__image">
+    <div class="element__caption">
+      <h3 class="element__heading"></h3>
+      <button type="button" class="btn btn_style_like" aria-label="Нравится!"></button>
+    </div>
+  </li>
+</template>
 </body>
 </html>
