@@ -1,8 +1,8 @@
-import './styles/index.css';
+import '../styles/index.css';
 import { popups, addCardButton, editProfileButton, closeButtons, popupProfileEdit, popupCardAdd ,formProfileEdit,
-    openPopup, openProfileEditPopup, handleEditProfileForm, hidePopup } from './components/modal.js';
-import { initialCards, buildCard, prependCard } from "./components/card";
-import { enableValidation} from "./components/validate";
+    openPopup, openProfileEditPopup, handleEditProfileForm, hidePopup } from './modal.js';
+import { initialCards, buildCard, prependCard } from "./card";
+import { enableValidation} from "./validate";
 
 
 /**
