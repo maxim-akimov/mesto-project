@@ -1,6 +1,6 @@
 import '../styles/index.css';
-import { popups, addCardButton, editProfileButton, closeButtons, popupProfileEdit, popupCardAdd ,formProfileEdit,
-    openPopup, openProfileEditPopup, handleEditProfileForm, hidePopup } from './modal.js';
+import { popups, addCardButton, editProfileButton, formCardAdd, popupProfileEdit, popupCardAdd ,formProfileEdit,
+    openPopup, openProfileEditPopup, handlePopupClose, handleEditProfileForm, handleCardAddForm } from './modal.js';
 import { initialCards, buildCard, prependCard } from "./card";
 import { enableValidation} from "./validate";
 
@@ -17,11 +17,12 @@ addCardButton.addEventListener('click', () => openPopup(popupCardAdd));
 //Отправка формы редактирования профиля
 formProfileEdit.addEventListener('submit', handleEditProfileForm);
 
-//Установка слушателя и обработчика событий на кнопки закрытия модальных окон
-popups.forEach(popup => {
-    popup.addEventListener('click', hidePopup)
+//Установка слушателя и обработчика событий на модальные окна
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        handlePopupClose(evt);
+    })
 })
-window.addEventListener('keyup', hidePopup);
 
 
 /**
@@ -32,6 +33,10 @@ initialCards.forEach(item => {
     const card = buildCard(item.name, item.link);
     prependCard(card);
 });
+
+
+//Отправка формы добавления новой карточки
+formCardAdd.addEventListener('submit', handleCardAddForm);
 
 
 /**

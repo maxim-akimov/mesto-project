@@ -37,7 +37,10 @@ export const popupCardAdd = document.querySelector('.popup_action_add-card');
 export const addCardButton = document.querySelector('.btn_style_add');
 
 //Данные формы
-const formCardAdd = document.forms.cardAdd;
+export const formCardAdd = document.forms.cardAdd;
+
+//Кнопка сабмита
+const submitCardAddBtn = formCardAdd.querySelector('.btn_style_submit');
 
 
 
@@ -57,25 +60,18 @@ const popupFigcaptionElement = popupPictureView.querySelector('.popup__figcaptio
 
 
 //Функция удаления модификатора открытого окна
-function closePopup(popup) {
+export function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    window.removeEventListener('keyup', handleEscape);
 }
-
-
-//todo перенести в index.js
-//Отправка формы добавления новой карточки
-formCardAdd.addEventListener('submit', handleCardAddForm);
 
 
 
 //Функция реализации закрытия модального окна
+/*
 export function hidePopup(evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-    if(evt.key === 'Escape' && openedPopup) {
-        closePopup(openedPopup);
-    } else if((!evt.target.closest('.popup__container') &&
-        !evt.target.closest('.popup__figure')) ||
-        evt.target.classList.contains('popup__btn-close')) {
+    if(!evt.target.closest('.popup__container') &&
+        !evt.target.closest('.popup__figure')) {
         const popup = evt.target.closest('.popup');
         if (popup) {
             closePopup(popup);
@@ -83,11 +79,14 @@ export function hidePopup(evt) {
     }
 }
 
+ */
+
 
 
 //Функция добавления модификатора открытого окна
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
+    window.addEventListener('keyup', handleEscape);
 }
 
 
@@ -113,17 +112,39 @@ export function openProfileEditPopup() {
 
 
 
+//Обработчик нажатия на клавишу Escape
+function handleEscape(evt) {
+    if(evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        if(openedPopup) {
+            closePopup(openedPopup);
+        }
+    }
+}
+
+
+
+export function handlePopupClose(evt) {
+    if (evt.target.classList.contains('popup_opened') ||
+        evt.target.classList.contains('popup__btn-close')) {
+        closePopup(evt.target.closest('.popup'));
+    }
+}
+
+
+
 //Обработка отправки формы создания новой карточки
-function handleCardAddForm(evt) {
+export function handleCardAddForm(evt) {
     evt.preventDefault();
 
-    if(formCardAdd.placeName.value && formCardAdd.placeLink.value) {
         const card = buildCard(formCardAdd.placeName.value, formCardAdd.placeLink.value)
         prependCard(card);
 
-        hidePopup(evt);
+        closePopup(popupCardAdd);
         formCardAdd.reset();
-    }
+        console.log(submitCardAddBtn)
+        submitCardAddBtn.disabled = true;
+        submitCardAddBtn.classList.add('btn_disabled');
 }
 
 
@@ -137,6 +158,6 @@ export function handleEditProfileForm(evt) {
         vocationElement.textContent = formProfileEdit.profileVocation.value;
     }
 
-    hidePopup(evt);
+    closePopup(popupProfileEdit);
     formProfileEdit.reset();
 }

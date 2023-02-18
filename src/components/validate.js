@@ -17,18 +17,6 @@ function setEventListeners(formElement, options) {
     })
 }
 
-function activateSubmitButton(formElement, options) {
-    const btnElement = formElement.querySelector(options.submitButtonSelector);
-    btnElement.classList.remove(options.inactiveButtonClass);
-    btnElement.disabled = false;
-}
-
-function blockedSubmitButton(formElement, options) {
-    const btnElement = formElement.querySelector(options.submitButtonSelector);
-    btnElement.classList.add(options.inactiveButtonClass);
-    btnElement.disabled = true;
-}
-
 function isValid(formElement, inputElement, options) {
     if (inputElement.validity.patternMismatch) {
         inputElement.setCustomValidity(inputElement.dataset.errorMessage);
@@ -38,11 +26,23 @@ function isValid(formElement, inputElement, options) {
 
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, options);
-        blockedSubmitButton(formElement, options)
+        blockSubmitButton(formElement, options)
     } else {
         hideInputError(formElement, inputElement, options);
         activateSubmitButton(formElement, options)
     }
+}
+
+function activateSubmitButton(formElement, options) {
+    const btnElement = formElement.querySelector(options.submitButtonSelector);
+    btnElement.classList.remove(options.inactiveButtonClass);
+    btnElement.disabled = false;
+}
+
+function blockSubmitButton(formElement, options) {
+    const btnElement = formElement.querySelector(options.submitButtonSelector);
+    btnElement.classList.add(options.inactiveButtonClass);
+    btnElement.disabled = true;
 }
 
 function showInputError(formElement, inputElement, errorMessage, options) {
@@ -59,6 +59,3 @@ function hideInputError(formElement, inputElement, options) {
     errorElement.classList.remove(`${options.errorClass}_visible`);
     errorElement.textContent = '';
 }
-
-
-
