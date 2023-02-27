@@ -3,6 +3,7 @@ import { popups, addCardButton, editProfileButton, formCardAdd, popupProfileEdit
     openPopup, openProfileEditPopup, handlePopupClose, handleEditProfileForm, handleCardAddForm } from './modal.js';
 import { initialCards, buildCard, prependCard } from "./card";
 import { enableValidation} from "./validate";
+import { renderUser, renderCards } from "./utils.js";
 
 
 /**
@@ -26,13 +27,17 @@ popups.forEach((popup) => {
 
 
 /**
- * Обработка загрузки карточек
+ * Загрузка информации о пользователе
+ */
+renderUser();
+
+
+
+/**
+ * Загрузка карточек
  */
 //Заполнение карточками
-initialCards.forEach(item => {
-    const card = buildCard(item.name, item.link);
-    prependCard(card);
-});
+renderCards();
 
 
 //Отправка формы добавления новой карточки

@@ -1,4 +1,5 @@
-import { buildCard, prependCard } from "./card";
+import {buildCard, prependCard} from "./card";
+import {updateUserProfile, addCard} from "./api";
 
 
 export const popups = document.querySelectorAll('.popup');
@@ -8,13 +9,11 @@ export const popups = document.querySelectorAll('.popup');
  * Редактирование профиля, отображение информации в профиле
  */
 //Элемент для отображения имени пользователя на странице
-const nameElement = document.querySelector('.profile__name');
+export const nameElement = document.querySelector('.profile__name');
 
 //Элемент для отображения информации "о себе" на странице
-const vocationElement = document.querySelector('.profile__vocation');
+export const vocationElement = document.querySelector('.profile__vocation');
 
-//Коллекция всех кнопок закрытия
-export const closeButtons = document.querySelectorAll('.popup__btn-close');
 
 //Модальное окно редактирования профиля
 export const popupProfileEdit = document.querySelector('.popup_action_edit-profile');
@@ -25,6 +24,8 @@ export const editProfileButton = document.querySelector('.btn_style_edit');
 //Форма
 export const formProfileEdit = document.forms.profileEdit;
 
+//Кнопка отправки формы
+const editProfileSubmitButton = formProfileEdit.elements.submit;
 
 
 /**
@@ -43,7 +44,6 @@ export const formCardAdd = document.forms.cardAdd;
 const submitCardAddBtn = formCardAdd.querySelector('.btn_style_submit');
 
 
-
 /**
  * Просмотр карточек с картинками в модальном окне
  */
@@ -58,7 +58,6 @@ const popupImageElement = popupPictureView.querySelector('.popup__image');
 const popupFigcaptionElement = popupPictureView.querySelector('.popup__figcaption');
 
 
-
 //Функция удаления модификатора открытого окна
 export function closePopup(popup) {
     popup.classList.remove('popup_opened');
@@ -66,29 +65,11 @@ export function closePopup(popup) {
 }
 
 
-
-//Функция реализации закрытия модального окна
-/*
-export function hidePopup(evt) {
-    if(!evt.target.closest('.popup__container') &&
-        !evt.target.closest('.popup__figure')) {
-        const popup = evt.target.closest('.popup');
-        if (popup) {
-            closePopup(popup);
-        }
-    }
-}
-
- */
-
-
-
 //Функция добавления модификатора открытого окна
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
     window.addEventListener('keyup', handleEscape);
 }
-
 
 
 //Функция открытия модального окна для просмотра изображений
@@ -101,7 +82,6 @@ export function openPicturePopup(name, link) {
 }
 
 
-
 //Функция открытия модального окна для редактирования профиля
 export function openProfileEditPopup() {
     formProfileEdit.profileName.value = nameElement.textContent;
@@ -111,17 +91,15 @@ export function openProfileEditPopup() {
 }
 
 
-
 //Обработчик нажатия на клавишу Escape
 function handleEscape(evt) {
-    if(evt.key === 'Escape') {
+    if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        if(openedPopup) {
+        if (openedPopup) {
             closePopup(openedPopup);
         }
     }
 }
-
 
 
 export function handlePopupClose(evt) {
@@ -132,31 +110,56 @@ export function handlePopupClose(evt) {
 }
 
 
-
 //Обработка отправки формы создания новой карточки
 export function handleCardAddForm(evt) {
     evt.preventDefault();
 
-        const card = buildCard(formCardAdd.placeName.value, formCardAdd.placeLink.value)
-        prependCard(card);
+    addCard(formCardAdd.placeName.value, formCardAdd.placeLink.value)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+        .then(res => {
+            const card = buildCard(res.name, res.link)
+            prependCard(card);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
-        closePopup(popupCardAdd);
-        formCardAdd.reset();
-        console.log(submitCardAddBtn)
-        submitCardAddBtn.disabled = true;
-        submitCardAddBtn.classList.add('btn_disabled');
+    closePopup(popupCardAdd);
+    formCardAdd.reset();
+    console.log(submitCardAddBtn)
+    submitCardAddBtn.disabled = true;
+    submitCardAddBtn.classList.add('btn_disabled');
 }
-
 
 
 //Обработка отправки формы редактирования профиля
 export function handleEditProfileForm(evt) {
     evt.preventDefault();
 
-    if (formProfileEdit.profileName.value && formProfileEdit.profileVocation.value) {
-        nameElement.textContent = formProfileEdit.profileName.value;
-        vocationElement.textContent = formProfileEdit.profileVocation.value;
-    }
+    editProfileSubmitButton.textContent = 'Сохранение...';
+
+    updateUserProfile(formProfileEdit.profileName.value, formProfileEdit.profileVocation.value)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+        .then(res => {
+            nameElement.textContent = res.name;
+            vocationElement.textContent = res.about;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(() => {
+            editProfileSubmitButton.textContent = 'Сохранить';
+        })
 
     closePopup(popupProfileEdit);
     formProfileEdit.reset();
