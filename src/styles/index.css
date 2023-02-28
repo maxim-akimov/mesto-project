@@ -5,6 +5,7 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar-wrap/profile__avatar-wrap.css);
 @import url(../blocks/btn/btn.css);
 @import url(../blocks/btn/_style/btn_style_add.css);
 @import url(../blocks/btn/_style/btn_style_delete.css);

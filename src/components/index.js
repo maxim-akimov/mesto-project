@@ -1,7 +1,9 @@
 import '../styles/index.css';
 import { popups, addCardButton, editProfileButton, formCardAdd, popupProfileEdit, popupCardAdd ,formProfileEdit,
-    openPopup, openProfileEditPopup, handlePopupClose, handleEditProfileForm, handleCardAddForm } from './modal.js';
-import { initialCards, buildCard, prependCard } from "./card";
+    openPopup, openProfileEditPopup, handlePopupClose, handleEditProfileForm, handleCardAddForm, openDeleteConfirmationPopup, 
+    deleteConfirmationButton, handleDeleteCardConfirmation, editAvatarButton, openEditAvatarPopup, formAvatarEdit,
+    handleEditAvatarForm } from './modal.js';
+import { cardContainer, toggleLike} from "./card";
 import { enableValidation} from "./validate";
 import { renderUser, renderCards } from "./utils.js";
 
@@ -10,13 +12,19 @@ import { renderUser, renderCards } from "./utils.js";
  * Назначение слушателей событий элементам страницы
  */
 //Нажатие на кнопку редактирования профиля
-editProfileButton.addEventListener('click', () => openProfileEditPopup(popupProfileEdit));
+editProfileButton.addEventListener('click', openProfileEditPopup);
 
 //Нажатие на кнопку добавления новой карточки
 addCardButton.addEventListener('click', () => openPopup(popupCardAdd));
 
 //Отправка формы редактирования профиля
 formProfileEdit.addEventListener('submit', handleEditProfileForm);
+
+//Нажатие на кнопку редактирования аватара
+editAvatarButton.addEventListener('click', openEditAvatarPopup);
+
+//Отправка формы редактирования аватара
+formAvatarEdit.addEventListener('submit', handleEditAvatarForm);
 
 //Установка слушателя и обработчика событий на модальные окна
 popups.forEach((popup) => {
@@ -40,8 +48,21 @@ renderUser();
 renderCards();
 
 
+
 //Отправка формы добавления новой карточки
 formCardAdd.addEventListener('submit', handleCardAddForm);
+
+
+
+//Удаление карточки
+cardContainer.addEventListener('mousedown', openDeleteConfirmationPopup);
+deleteConfirmationButton.addEventListener('mousedown', handleDeleteCardConfirmation);
+
+
+
+//Постановка / удаление лайка
+cardContainer.addEventListener('mousedown', toggleLike);
+
 
 
 /**

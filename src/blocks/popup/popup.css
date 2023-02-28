@@ -15,6 +15,7 @@
   top: 0;
   transition: visibility 0.35s, opacity 0.35s ease-in-out;
   visibility: hidden;
+  z-index: 1;
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;

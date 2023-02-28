@@ -1,8 +1,10 @@
-import {buildCard, prependCard} from "./card";
-import {updateUserProfile, addCard} from "./api";
+import {buildCard, prependCard, deleteCardMarkup} from "./card";
+import {updateUserProfile, addCard, deleteCard, updateAvatar} from "./api";
+
 
 
 export const popups = document.querySelectorAll('.popup');
+
 
 
 /**
@@ -27,6 +29,22 @@ export const formProfileEdit = document.forms.profileEdit;
 //Кнопка отправки формы
 const editProfileSubmitButton = formProfileEdit.elements.submit;
 
+//Модальное окно редактирования аватара
+export const popupAvatarEdit = document.querySelector('.popup_action_edit-avatar');
+
+//Кнопка открытия модального окна
+export const editAvatarButton = document.querySelector('.profile__avatar-wrap');
+
+//Аватар
+export const avatarElement = document.querySelector('.profile__avatar');
+
+//Форма
+export const formAvatarEdit = document.forms.editAvatar;
+
+//Кнопка отправки формы
+const editAvatarSubmitButton = formAvatarEdit.elements.submit;
+
+
 
 /**
  * Добавление новой карточки
@@ -44,6 +62,7 @@ export const formCardAdd = document.forms.cardAdd;
 const submitCardAddBtn = formCardAdd.querySelector('.btn_style_submit');
 
 
+
 /**
  * Просмотр карточек с картинками в модальном окне
  */
@@ -58,6 +77,18 @@ const popupImageElement = popupPictureView.querySelector('.popup__image');
 const popupFigcaptionElement = popupPictureView.querySelector('.popup__figcaption');
 
 
+
+/**
+ * Удаление карточки
+ */
+//Окно подтверждения
+export const popupDeleteConfurmation = document.querySelector('.popup_action_delete-confirmation');
+
+//Кнопк подтверждения
+export const deleteConfirmationButton = popupDeleteConfurmation.querySelector('.btn_style_submit');
+
+
+
 //Функция удаления модификатора открытого окна
 export function closePopup(popup) {
     popup.classList.remove('popup_opened');
@@ -65,11 +96,13 @@ export function closePopup(popup) {
 }
 
 
+
 //Функция добавления модификатора открытого окна
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
     window.addEventListener('keyup', handleEscape);
 }
+
 
 
 //Функция открытия модального окна для просмотра изображений
@@ -82,6 +115,7 @@ export function openPicturePopup(name, link) {
 }
 
 
+
 //Функция открытия модального окна для редактирования профиля
 export function openProfileEditPopup() {
     formProfileEdit.profileName.value = nameElement.textContent;
@@ -89,6 +123,23 @@ export function openProfileEditPopup() {
 
     openPopup(popupProfileEdit);
 }
+
+
+
+export function openDeleteConfirmationPopup(evt) {
+    if(evt.target.classList.contains('btn_style_delete')) {
+        deleteConfirmationButton.setAttribute('data-card-id', evt.target.closest('.element').id);
+        openPopup(popupDeleteConfurmation)
+    }
+}
+
+
+
+export function openEditAvatarPopup() {
+    formAvatarEdit.elements.avatarLink.value = avatarElement.src;
+    openPopup(popupAvatarEdit);
+} 
+
 
 
 //Обработчик нажатия на клавишу Escape
@@ -122,12 +173,12 @@ export function handleCardAddForm(evt) {
             return Promise.reject(`Ошибка: ${res.status}`);
         })
         .then(res => {
-            const card = buildCard(res.name, res.link)
+            const card = buildCard(res._id, res.name, res.link, res.likes.length, true)
             prependCard(card);
         })
         .catch(err => {
             console.log(err);
-        })
+        });
 
     closePopup(popupCardAdd);
     formCardAdd.reset();
@@ -159,8 +210,66 @@ export function handleEditProfileForm(evt) {
         })
         .finally(() => {
             editProfileSubmitButton.textContent = 'Сохранить';
-        })
+        });
 
     closePopup(popupProfileEdit);
     formProfileEdit.reset();
 }
+
+
+
+export function handleDeleteCardConfirmation(evt) {
+    const cardId = evt.target.dataset.cardId.replace('_', '');
+    deleteConfirmationButton.textContent = 'Удаление..';
+    deleteConfirmationButton.disabled = true;
+    deleteConfirmationButton.classList.add('btn_disabled')
+
+    deleteCard(cardId)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+        .then(res => {
+            deleteCardMarkup(cardId);
+            closePopup(popupDeleteConfurmation);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(() => {
+            deleteConfirmationButton.textContent = 'Да';
+            deleteConfirmationButton.disabled = false;
+            deleteConfirmationButton.classList.remove('btn_disabled')
+        });
+    }
+
+
+
+export function handleEditAvatarForm(evt) {
+    evt.preventDefault();
+
+    editAvatarSubmitButton.textContent = 'Сохранение...';
+
+    updateAvatar(formAvatarEdit.elements.avatarLink.value)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+        .then(res => {
+            avatarElement.src = res.avatar;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(() => {
+            editAvatarSubmitButton.textContent = 'Сохранить';
+        });
+
+    closePopup(popupAvatarEdit);
+    formAvatarEdit.reset();
+}
+

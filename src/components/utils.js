@@ -43,7 +43,7 @@ export function renderCards() {
                 })
                 .then(userRes => {
                     res.forEach(card => {
-                        const cardMarkup = buildCard(card.name, card.link,
+                        const cardMarkup = buildCard(card._id, card.name, card.link,
                             card.likes.length, (userRes._id === card.owner._id));
                         prependCard(cardMarkup);
                     })
