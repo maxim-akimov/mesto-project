@@ -19,7 +19,7 @@ export function buildCard(id, name, link, likes, isRemovable, hasLike) {
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
 
-    cardElement.id = `_${id}`;
+    cardElement.setAttribute('data-card-id', id);
     cardImage.src = link;
     cardImage.alt = name;
     cardElement.querySelector('.element__heading').textContent = name;
@@ -41,6 +41,19 @@ export function buildCard(id, name, link, likes, isRemovable, hasLike) {
 
 
 
+export function checkLikeState(user, likes) {
+    if(likes) {
+        for(let i = 0; i < likes.length; i++ ) {
+            if(user._id === likes[i]._id) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
 //Вставка карточки в разметку страницы
 export function prependCard(cardObject) {
     cardContainer.prepend(cardObject)
@@ -49,7 +62,7 @@ export function prependCard(cardObject) {
 
 
 export function deleteCardMarkup(id) {
-    cardContainer.querySelector(`#_${id}`).remove();
+    cardContainer.querySelector(`.element[data-card-id="${id}"]`).remove();
 }
 
 
@@ -58,17 +71,11 @@ export function setLike(evt) {
     if (evt.target.classList.contains('btn_style_like')) {
         const likeButton = evt.target;
         const cardElement = evt.target.closest('.element');
-        const cardId = cardElement.id.replace('_', '');
+        const cardId = cardElement.dataset.cardId;
 
         likeButton.style.visibility = 'hidden';
 
         insertLike(cardId)
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
             .then(res => {
                 evt.target.classList.add('btn_style_like-active');
                 cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
@@ -89,17 +96,11 @@ export function resetLike(evt) {
     if (evt.target.classList.contains('btn_style_like')) {
         const likeButton = evt.target;
         const cardElement = evt.target.closest('.element');
-        const cardId = cardElement.id.replace('_', '');
+        const cardId = cardElement.dataset.cardId;
 
         likeButton.style.visibility = 'hidden';
 
         deleteLike(cardId)
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
             .then(res => {
                 evt.target.classList.remove('btn_style_like-active');
                 cardElement.querySelector('.element__like-counter').textContent = res.likes.length;

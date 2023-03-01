@@ -1,5 +1,6 @@
 import {buildCard, prependCard, deleteCardMarkup} from "./card";
 import {updateUserProfile, addCard, deleteCard, updateAvatar} from "./api";
+import { handleSubmit, renderLoading } from "./utils";
 
 
 
@@ -41,9 +42,6 @@ export const avatarElement = document.querySelector('.profile__avatar');
 //Форма
 export const formAvatarEdit = document.forms.editAvatar;
 
-//Кнопка отправки формы
-const editAvatarSubmitButton = formAvatarEdit.elements.submit;
-
 
 
 /**
@@ -58,8 +56,6 @@ export const addCardButton = document.querySelector('.btn_style_add');
 //Данные формы
 export const formCardAdd = document.forms.cardAdd;
 
-//Кнопка сабмита
-const submitCardAddBtn = formCardAdd.querySelector('.btn_style_submit');
 
 
 
@@ -86,6 +82,9 @@ export const popupDeleteConfurmation = document.querySelector('.popup_action_del
 
 //Кнопк подтверждения
 export const deleteConfirmationButton = popupDeleteConfurmation.querySelector('.btn_style_submit');
+
+//Данные формы
+export const formCardDelete = document.forms.cardDelete;
 
 
 
@@ -128,7 +127,7 @@ export function openProfileEditPopup() {
 
 export function openDeleteConfirmationPopup(evt) {
     if(evt.target.classList.contains('btn_style_delete')) {
-        deleteConfirmationButton.setAttribute('data-card-id', evt.target.closest('.element').id);
+        formCardDelete.elements.cardId.value =  evt.target.closest('.element').dataset.cardId;
         openPopup(popupDeleteConfurmation)
     }
 }
@@ -163,113 +162,58 @@ export function handlePopupClose(evt) {
 
 //Обработка отправки формы создания новой карточки
 export function handleCardAddForm(evt) {
-    evt.preventDefault();
-
-    addCard(formCardAdd.placeName.value, formCardAdd.placeLink.value)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then(res => {
+    function makeRequest() {
+        return addCard(formCardAdd.placeName.value, formCardAdd.placeLink.value).then(res => {
             const card = buildCard(res._id, res.name, res.link, res.likes.length, true)
             prependCard(card);
+            closePopup(popupCardAdd);
         })
-        .catch(err => {
-            console.log(err);
-        });
+    }
 
-    closePopup(popupCardAdd);
-    formCardAdd.reset();
-    console.log(submitCardAddBtn)
-    submitCardAddBtn.disabled = true;
-    submitCardAddBtn.classList.add('btn_disabled');
+    handleSubmit(makeRequest, evt);
 }
 
 
 //Обработка отправки формы редактирования профиля
 export function handleEditProfileForm(evt) {
-    evt.preventDefault();
-
-    editProfileSubmitButton.textContent = 'Сохранение...';
-
-    updateUserProfile(formProfileEdit.profileName.value, formProfileEdit.profileVocation.value)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then(res => {
+    function makeRequest() {
+        return updateUserProfile(formProfileEdit.profileName.value, 
+            formProfileEdit.profileVocation.value).then(res => {
             nameElement.textContent = res.name;
             vocationElement.textContent = res.about;
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            editProfileSubmitButton.textContent = 'Сохранить';
-        });
 
-    closePopup(popupProfileEdit);
-    formProfileEdit.reset();
+            closePopup(popupProfileEdit);
+            formProfileEdit.reset();
+        })
+    }
+
+    handleSubmit(makeRequest, evt);
 }
 
 
 
 export function handleDeleteCardConfirmation(evt) {
-    const cardId = evt.target.dataset.cardId.replace('_', '');
-    deleteConfirmationButton.textContent = 'Удаление..';
-    deleteConfirmationButton.disabled = true;
-    deleteConfirmationButton.classList.add('btn_disabled')
-
-    deleteCard(cardId)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then(res => {
+    const cardId = formCardDelete.elements.cardId.value;
+    function makeRequest() {
+        return deleteCard(cardId).then(res => {
             deleteCardMarkup(cardId);
             closePopup(popupDeleteConfurmation);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            deleteConfirmationButton.textContent = 'Да';
-            deleteConfirmationButton.disabled = false;
-            deleteConfirmationButton.classList.remove('btn_disabled')
         });
     }
+
+    handleSubmit(makeRequest, evt, 'Удаление...');
+}
 
 
 
 export function handleEditAvatarForm(evt) {
-    evt.preventDefault();
-
-    editAvatarSubmitButton.textContent = 'Сохранение...';
-
-    updateAvatar(formAvatarEdit.elements.avatarLink.value)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then(res => {
+    function makeRequest() {
+        return updateAvatar(formAvatarEdit.elements.avatarLink.value).then(res => {
             avatarElement.src = res.avatar;
+            closePopup(popupAvatarEdit);
         })
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            editAvatarSubmitButton.textContent = 'Сохранить';
-        });
+    }
 
-    closePopup(popupAvatarEdit);
-    formAvatarEdit.reset();
+    handleSubmit(makeRequest, evt);
 }
 

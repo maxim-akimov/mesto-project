@@ -1,56 +1,61 @@
 import {getUser, getCards} from './api.js'
 import {nameElement, vocationElement} from './modal.js'
-import {buildCard, prependCard} from "./card";
+import {buildCard, prependCard, checkLikeState} from "./card";
 
 const avatarElement = document.querySelector('.profile__avatar');
 
-export function renderUser() {
-    getUser()
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then(res => {
-            nameElement.textContent = res.name;
-            vocationElement.textContent = res.about;
-            avatarElement.src = res.avatar;
 
-        })
-        .catch(err => {
-            console.log(err);
-        })
+export function checkResponse(res) {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
 }
 
 
 
-export function renderCards() {
-    getCards()
+export function renderLoading(isLoading, button, text = 'Сохранить', loadingText = 'Сохранение...') {
+    if(isLoading) {
+        button.textContent = loadingText;
+    } else {
+        button.textContent = text;
+    }
+}
+
+
+
+export function handleSubmit(request, evt, loadingText) {
+    evt.preventDefault();
+
+    const submitBtn = evt.submitter;
+    const submitBtnInitialText = submitBtn.textContent;
+
+    renderLoading(true, submitBtn, submitBtnInitialText, loadingText);
+
+    request()
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
+            evt.target.reset();
         })
-        .then(res => {
-            getUser()
-                .then(res => {
-                    if (res.ok) {
-                        return res.json();
-                    }
-                    return Promise.reject(`Ошибка: ${res.status}`);
-                })
-                .then(userRes => {
-                    res.forEach(card => {
-                        const cardMarkup = buildCard(card._id, card.name, card.link,
-                            card.likes.length, (userRes._id === card.owner._id));
-                        prependCard(cardMarkup);
-                    })
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(() => {
+            renderLoading(false, submitBtn, submitBtnInitialText);
+        });
+}
+
+export function renderData() {
+    Promise.all([getUser(), getCards()])
+        .then(([user, cards]) => {
+            nameElement.textContent = user.name;
+            vocationElement.textContent = user.about;
+            avatarElement.src = user.avatar;
+
+            cards.forEach(card => {
+                const cardMarkup = buildCard(card._id, card.name, card.link,
+                    card.likes.length, (user._id === card.owner._id), checkLikeState(user, card.likes));
+                prependCard(cardMarkup);
+            })
         })
         .catch(err => {
             console.log(err);

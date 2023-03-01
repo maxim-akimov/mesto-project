@@ -1,3 +1,7 @@
+import { checkResponse } from "./utils"
+
+
+
 export function getUser() {
     return fetch('https://nomoreparties.co/v1/plus-cohort-21/users/me', {
         headers: {
@@ -5,6 +9,7 @@ export function getUser() {
             'Content-Type': 'application/json; charset=UTF-8'
         }
     })
+    .then(checkResponse);
 }
 
 
@@ -16,6 +21,7 @@ export function getCards() {
             'Content-Type': 'application/json; charset=UTF-8'
         }
     })
+    .then(checkResponse);
 }
 
 
@@ -32,6 +38,7 @@ export function updateUserProfile(name, vocation) {
             about: vocation
         })
     })
+    .then(checkResponse);
 }
 
 
@@ -48,6 +55,7 @@ export function addCard(name, link) {
             link: link
         })
     })
+    .then(checkResponse);
 }
 
 
@@ -60,7 +68,10 @@ export function deleteCard(id) {
             'Content-Type': 'application/json; charset=UTF-8'
         }
     })
+    .then(checkResponse);
 }
+
+
 
 export function insertLike(cardId) {
     return fetch(`https://nomoreparties.co/v1/plus-cohort-21/cards/likes/${cardId}`, {
@@ -70,7 +81,10 @@ export function insertLike(cardId) {
             'Content-Type': 'application/json; charset=UTF-8'
         }
     })
+    .then(checkResponse);
 }
+
+
 
 export function deleteLike(cardId) {
     return fetch(`https://nomoreparties.co/v1/plus-cohort-21/cards/likes/${cardId}`, {
@@ -80,7 +94,10 @@ export function deleteLike(cardId) {
             'Content-Type': 'application/json; charset=UTF-8'
         }
     })
+    .then(checkResponse);
 }
+
+
 
 export function updateAvatar(avatar) {
     return fetch(`https://nomoreparties.co/v1/plus-cohort-21/users/me/avatar `, {
@@ -93,4 +110,5 @@ export function updateAvatar(avatar) {
             avatar: avatar
         })
     })
+    .then(checkResponse);
 }

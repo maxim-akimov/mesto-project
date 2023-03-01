@@ -1,11 +1,11 @@
 import '../styles/index.css';
-import { popups, addCardButton, editProfileButton, formCardAdd, popupProfileEdit, popupCardAdd ,formProfileEdit,
-    openPopup, openProfileEditPopup, handlePopupClose, handleEditProfileForm, handleCardAddForm, openDeleteConfirmationPopup, 
-    deleteConfirmationButton, handleDeleteCardConfirmation, editAvatarButton, openEditAvatarPopup, formAvatarEdit,
-    handleEditAvatarForm } from './modal.js';
+import { popups, addCardButton, editProfileButton, formCardAdd, popupCardAdd ,formProfileEdit,
+    openPopup, openProfileEditPopup, handlePopupClose, handleEditProfileForm, handleCardAddForm, 
+    openDeleteConfirmationPopup, handleDeleteCardConfirmation, editAvatarButton, openEditAvatarPopup, 
+    formAvatarEdit, handleEditAvatarForm, formCardDelete} from './modal.js';
 import { cardContainer, toggleLike} from "./card";
 import { enableValidation} from "./validate";
-import { renderUser, renderCards } from "./utils.js";
+import { renderData } from "./utils.js";
 
 
 /**
@@ -26,6 +26,18 @@ editAvatarButton.addEventListener('click', openEditAvatarPopup);
 //Отправка формы редактирования аватара
 formAvatarEdit.addEventListener('submit', handleEditAvatarForm);
 
+//Отправка формы удаления карточки
+formCardDelete.addEventListener('submit', handleDeleteCardConfirmation);
+
+//Отправка формы добавления новой карточки
+formCardAdd.addEventListener('submit', handleCardAddForm);
+
+//Удаление карточки
+cardContainer.addEventListener('mousedown', openDeleteConfirmationPopup);
+
+//Постановка / удаление лайка
+cardContainer.addEventListener('mousedown', toggleLike);
+
 //Установка слушателя и обработчика событий на модальные окна
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
@@ -34,34 +46,11 @@ popups.forEach((popup) => {
 })
 
 
-/**
- * Загрузка информации о пользователе
- */
-renderUser();
-
-
 
 /**
- * Загрузка карточек
+ * Загрузка информации о пользователе и карточек
  */
-//Заполнение карточками
-renderCards();
-
-
-
-//Отправка формы добавления новой карточки
-formCardAdd.addEventListener('submit', handleCardAddForm);
-
-
-
-//Удаление карточки
-cardContainer.addEventListener('mousedown', openDeleteConfirmationPopup);
-deleteConfirmationButton.addEventListener('mousedown', handleDeleteCardConfirmation);
-
-
-
-//Постановка / удаление лайка
-cardContainer.addEventListener('mousedown', toggleLike);
+renderData();
 
 
 
