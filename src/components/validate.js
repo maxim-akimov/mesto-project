@@ -10,6 +10,10 @@ export function enableValidation(options) {
 function setEventListeners(formElement, options) {
     const inputsList = formElement.querySelectorAll(options.inputSelector)
 
+    formElement.addEventListener('reset', () => {
+        blockSubmitButton(formElement, options);
+    })
+
     inputsList.forEach(input => {
         input.addEventListener('input', () => {
             isValid(formElement, input, options);
@@ -41,7 +45,9 @@ function activateSubmitButton(formElement, options) {
 
 function blockSubmitButton(formElement, options) {
     const btnElement = formElement.querySelector(options.submitButtonSelector);
-    btnElement.classList.add(options.inactiveButtonClass);
+    if(!btnElement.classList.contains('btn_not-block')) {
+        btnElement.classList.add(options.inactiveButtonClass);
+    }
     btnElement.disabled = true;
 }
 
