@@ -5,6 +5,13 @@ import {buildCard, prependCard, checkLikeState} from "./card";
 const avatarElement = document.querySelector('.profile__avatar');
 
 
+
+export function request(url, options) {
+    return fetch(url, options).then(checkResponse);
+}
+
+
+
 export function checkResponse(res) {
     if (res.ok) {
         return res.json();
