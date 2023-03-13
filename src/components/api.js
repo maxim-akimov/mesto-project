@@ -1,109 +1,95 @@
-import { request } from "./utils"
+export default class Api {
+  constructor(options) {
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+  }
 
 
 
-const headers = {
-    authorization: 'f07db228-d9f6-44b3-81fa-e5425e2f6a35',
-    'Content-Type': 'application/json; charset=UTF-8'
-};
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers
+    }).then(this._checkResponse);
+  }
 
 
 
-export function getUser() {
-    return request(
-        'https://nomoreparties.co/v1/plus-cohort-21/users/me', 
-        { headers }
-    );
-}
+  insertCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function getCards() {
-    return request(
-        'https://nomoreparties.co/v1/plus-cohort-21/cards', 
-        { headers }
-    );
-}
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function updateUserProfile(name, vocation) {
-    return request(
-        'https://nomoreparties.co/v1/plus-cohort-21/users/me', 
-        { 
-            method: 'PATCH',
-            headers,
-            body: JSON.stringify({
-                name: name,
-                about: vocation
-            })
-        }
-    );
-}
+  insertLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function addCard(name, link) {
-    return request(
-        'https://nomoreparties.co/v1/plus-cohort-21/cards', 
-        { 
-            method: 'POST',
-            headers,
-            body: JSON.stringify({
-                name: name,
-                link: link
-            })
-        }
-    );
-}
+  deleteLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function deleteCard(id) {
-    return request(
-        `https://nomoreparties.co/v1/plus-cohort-21/cards/${id}`, 
-        { 
-            method: 'DELETE',
-            headers
-        }
-    );
-}
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function insertLike(cardId) {
-    return request(
-        `https://nomoreparties.co/v1/plus-cohort-21/cards/likes/${cardId}`, 
-        { 
-            method: 'PUT',
-            headers
-        }
-    );
-}
+  updateUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function deleteLike(cardId) {
-    return request(
-        `https://nomoreparties.co/v1/plus-cohort-21/cards/likes/${cardId}`, 
-        { 
-            method: 'DELETE',
-            headers
-        }
-    );
-}
+  updateAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: this._headers
+    })
+      .then(this._checkResponse);
+  }
 
 
 
-export function updateAvatar(avatar) {
-    return request(
-        `https://nomoreparties.co/v1/plus-cohort-21/users/me/avatar`, 
-        { 
-            method: 'PATCH',
-            headers,
-            body: JSON.stringify({
-                avatar: avatar
-            })
-        }
-    );
+  _checkResponse(response) {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(`Ошибка: ${response.status}`);
+  }
 }
