@@ -1,7 +1,10 @@
-import '../styles/index.css';
-
-import Api from './Api'
-import Card from './Card'
+import './styles/index.css';
+import Api from './components/Api';
+import UserInfo from './components/UserInfo';
+import Card from './components/Card';
+import Popup from './components/Popup';
+//import PopupWithImage from './components/PopupWithImage';
+//import PopupWithForm from './components/PopupWithForm';
 
 
 const api = new Api({
@@ -12,7 +15,7 @@ const api = new Api({
   }
 });
 
-
+//??
 const cards = api.getInitialCards().then((res) => {
   res.forEach(cardData => {
     const card = new Card({
@@ -26,3 +29,12 @@ const cards = api.getInitialCards().then((res) => {
   })
 });
 
+
+
+const user = new UserInfo({
+  nameElementSelector: '',
+  aboutElementSelector: ''
+}, api.getUserInfo()
+)
+
+console.log(user.getUserInfo());

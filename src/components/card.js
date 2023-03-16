@@ -1,11 +1,12 @@
 export default class Card {
   constructor({data, handleCardClick}, templateSelector) {
-
-      this._id = data._id;
-      this._name = data.name;
-      this._link = data.link;
-      this._owner = data.owner;
-      this._likes = data.likes;
+    ({ 
+      _id: this._id, 
+      name: this._name, 
+      link: this._link, 
+      owner: this._owner, 
+      likes: this._likes 
+    } = data);
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -51,7 +52,7 @@ export default class Card {
 
 
   _checkRemovableState() {
-    return this._owner._id === this._user._id;
+    //return this._owner._id === this._user._id;
   }
 
 
@@ -59,9 +60,9 @@ export default class Card {
   _checkLikeState() {
     if(this._likes) {
       for(let i = 0; i < this._likes.length; i++ ) {
-        if(this._user._id === this._likes[i]._id) {
-            return true;
-        }
+        //if(this._user._id === this._likes[i]._id) {
+        //    return true;
+        //}
       }
     }
     return false;
@@ -81,15 +82,14 @@ export default class Card {
     image.src = this._link;
     image.alt = this._name;
 
-    if(!this._checkRemovableState) {
+    if(!this._checkRemovableState()) {
         this._element.querySelector('.btn_style_delete').remove();
     }
 
-    return this._element;
-/*
-    if(checkLikeState) {
+    if(this._checkLikeState()) {
         cardElement.querySelector('.btn_style_like').classList.add('btn_style_like-active')
     }
-  */
+  
+    return this._element;
   }
 }
