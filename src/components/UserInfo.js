@@ -1,28 +1,39 @@
 export default class UserInfo {
-  constructor({nameElementSelector, aboutElementSelector}, requester) {
+  constructor({nameElementSelector, aboutElementSelector}, api) {
     this._nameElementSelector = nameElementSelector;
     this._aboutElementSelector = aboutElementSelector;
+    console.log(arguments)
 
-    this.data = requester();
+    this._nameElement = document.querySelector(this._nameElementSelector);
+    this._aboutElement = document.querySelector(this._aboutElementSelector);
+
+    this._api = api;
   }
 
 
 
   getUserInfo() {
-    this._requester.then(res => this._res = res);
-    return this.data;
+    return JSON.parse(sessionStorage.getItem('user-data'));
   }
 
 
 
-  setUserInfo() {
-    
+  setUserInfo({data}) {
+    this._api.updateUserInfo(data)
+        .then((res) => {
+          this._nameElement.textContent = res.name;
+          this._aboutElement.textContent = res.about;
+        })
+        .catch((err) => {
+          console.error(err);
+        })
   }
 
 
 
   renderData() {
-    this._nameElementSelector.textContent = '';
-    this._aboutElementSelector.textContent = '';
+    this._userData = this.getUserInfo();
+    this._nameElement.textContent = this._userData.name;
+    this._aboutElement.textContent = this._userData.about;
   }
 }

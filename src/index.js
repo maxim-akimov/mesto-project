@@ -31,10 +31,16 @@ const cards = api.getInitialCards().then((res) => {
 
 
 
-const user = new UserInfo({
-  nameElementSelector: '',
-  aboutElementSelector: ''
-}, api.getUserInfo()
-)
 
-console.log(user.getUserInfo());
+api.getUserInfo()
+    .then((res) => {
+      sessionStorage.setItem('user-data', JSON.stringify(res));
+
+      const user = new UserInfo({
+        nameElementSelector: '.profile__name',
+        aboutElementSelector: '.profile__vocation'
+      }, api);
+
+      user.renderData();
+    })
+
