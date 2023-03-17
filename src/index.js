@@ -1,16 +1,18 @@
 import './styles/index.css';
 import Api from './components/Api';
 import UserInfo from './components/UserInfo';
-import Card from './components/Card';
+import Card from './components/Сard';
+import Section from './components/Section';
+
 import Popup from './components/Popup';
-import { Section } from './components/Section';
 import PopupWithImage from './components/PopupWithImage';
-//import PopupWithImage from './components/PopupWithImage';
-//import PopupWithForm from './components/PopupWithForm';
+import PopupWithForm from './components/PopupWithForm';
 
 
 
-export const cardContainer = document.querySelector('.elements');
+const cardContainer = document.querySelector('.elements');
+const addCardButton = document.querySelector('.btn_style_add');
+const editProfileButton = document.querySelector('.btn_style_edit');
 
 
 const api = new Api({
@@ -49,8 +51,12 @@ api.getInitialCards()
         const card = new Card({
           data: cardItem,
           handleCardClick: () => {
-            const popup = new PopupWithImage(cardItem, '.popup_action_show-card');
-            popup.open();
+            const popup = new PopupWithImage('.popup_action_show-card');
+            popup.setEventListeners();
+            popup.openPopup(cardItem);
+          },
+          handleRemoveClick: () => {
+           //TODO открываем попап подтверждения удаления
           }
         },
         '#card-template');
@@ -65,3 +71,21 @@ api.getInitialCards()
     console.error(err);
   });
 
+
+
+addCardButton.addEventListener('mousedown', () => {
+    const popup = new PopupWithForm('.popup_action_add-card', () => {
+        //TODO submit
+    })
+    popup.setEventListeners();
+    popup.openPopup();
+})
+
+
+editProfileButton.addEventListener('mousedown', () => {
+    const popup = new PopupWithForm('.popup_action_edit-profile', () => {
+        //TODO submit
+    })
+    popup.setEventListeners();
+    popup.openPopup();
+})

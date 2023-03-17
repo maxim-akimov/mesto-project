@@ -1,19 +1,19 @@
+import Popup  from "./Popup";
+
 export default class PopupWithImage extends Popup {
-  constructor(data, selector) {
-    super(selector);
+    constructor(selector) {
+        super(selector);
+        this._popupImage = this._popup.querySelector('.popup__image');
+        this._popupFigcaption = this._popup.querySelector('.popup__figcaption');
+        
+    }
 
-    this._src = data.link;
-    this._name = data.name;
-
-    this._popup = document.querySelector(this._selector);
-  }
-
-
-
-  open() {
+   openPopup(image) {
     super.openPopup();
+    this._popupImage.src = image.link;
+    this._popupImage.alt = image.name;
+    this._popupFigcaption.textContent = image.name;
 
-    this._popup.querySelector('.popup__image').src = this._src;
-    this._popup.querySelector('.popup__figcaption').textContent = this.name;
-  }
+   }
+
 }

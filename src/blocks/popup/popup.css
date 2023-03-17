@@ -3,7 +3,7 @@
   background-color: rgba(0, 0, 0, .5);
   bottom: 0;
   box-sizing: border-box;
-  display: none;
+  display: flex;
   font-family: Inter, Arial, sans-serif;
   font-weight: normal;
   justify-content: center;

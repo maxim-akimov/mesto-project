@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({data, handleCardClick}, templateSelector) {
+  constructor({data, handleCardClick, handleRemoveClick}, templateSelector) {
     ({ 
       _id: this._id, 
       name: this._name, 
@@ -10,6 +10,7 @@ export default class Card {
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleRemoveClick = handleRemoveClick;
     this._user = JSON.parse(sessionStorage.getItem('user-data'));
   }
 
@@ -31,8 +32,9 @@ export default class Card {
       })
 
       this._element.querySelector('.element__image')
-      .addEventListener('mousedown', () => {
-        this._handleCardClick();
+        .addEventListener('mousedown', () => {
+          console.log(this._handleCardClick)
+          this._handleCardClick();
       })
 
       this._element.querySelector('.btn_style_delete')
