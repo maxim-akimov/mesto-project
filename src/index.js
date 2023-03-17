@@ -3,8 +3,14 @@ import Api from './components/Api';
 import UserInfo from './components/UserInfo';
 import Card from './components/Card';
 import Popup from './components/Popup';
+import { Section } from './components/Section';
+import PopupWithImage from './components/PopupWithImage';
 //import PopupWithImage from './components/PopupWithImage';
 //import PopupWithForm from './components/PopupWithForm';
+
+
+
+export const cardContainer = document.querySelector('.elements');
 
 
 const api = new Api({
@@ -15,32 +21,47 @@ const api = new Api({
   }
 });
 
-//??
-const cards = api.getInitialCards().then((res) => {
-  res.forEach(cardData => {
-    const card = new Card({
-      data: cardData,
-      handleCardClick: () => {
-        //TODO
-      }
-    }, '#card-template');
-
-    console.log(card.generate());
-  })
-});
-
-
 
 
 api.getUserInfo()
-    .then((res) => {
-      sessionStorage.setItem('user-data', JSON.stringify(res));
+  .then(res => {
+    sessionStorage.setItem('user-data', JSON.stringify(res));
 
-      const user = new UserInfo({
-        nameElementSelector: '.profile__name',
-        aboutElementSelector: '.profile__vocation'
-      }, api);
+    const user = new UserInfo({
+      nameElementSelector: '.profile__name',
+      aboutElementSelector: '.profile__vocation'
+    }, api);
 
-      user.renderData();
-    })
+    user.renderData();
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+
+
+
+api.getInitialCards()
+  .then(res => {
+    const section = new Section({
+      items: res,
+      renderer: (cardItem) => {
+        const card = new Card({
+          data: cardItem,
+          handleCardClick: () => {
+            const popup = new PopupWithImage(cardItem, '.popup_action_show-card');
+            popup.open();
+          }
+        },
+        '#card-template');
+        cardContainer.prepend(card.generate());
+      }
+    },
+    'elements')
+
+    section.renderItems();
+  })
+  .catch(err => {
+    console.error(err);
+  });
 

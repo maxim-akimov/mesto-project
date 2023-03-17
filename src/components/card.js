@@ -10,7 +10,7 @@ export default class Card {
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._user = sessionStorage.getItem('user-data');
+    this._user = JSON.parse(sessionStorage.getItem('user-data'));
   }
 
 
@@ -52,7 +52,7 @@ export default class Card {
 
 
   _checkRemovableState() {
-    //return this._owner._id === this._user._id;
+    return this._owner._id === this._user._id;
   }
 
 

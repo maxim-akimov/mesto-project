@@ -2,7 +2,6 @@ export default class UserInfo {
   constructor({nameElementSelector, aboutElementSelector}, api) {
     this._nameElementSelector = nameElementSelector;
     this._aboutElementSelector = aboutElementSelector;
-    console.log(arguments)
 
     this._nameElement = document.querySelector(this._nameElementSelector);
     this._aboutElement = document.querySelector(this._aboutElementSelector);
@@ -18,11 +17,13 @@ export default class UserInfo {
 
 
 
-  setUserInfo({data}) {
+  setUserInfo(data) {
     this._api.updateUserInfo(data)
         .then((res) => {
           this._nameElement.textContent = res.name;
           this._aboutElement.textContent = res.about;
+
+          sessionStorage.setItem('user-data', JSON.stringify(res))
         })
         .catch((err) => {
           console.error(err);
