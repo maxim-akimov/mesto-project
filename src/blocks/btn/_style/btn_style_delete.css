@@ -1,0 +1,9 @@
+.btn_style_delete {
+  background: url(../../../images/delete.svg) center center no-repeat;
+  border: none;
+  height: 19px;
+  width: 18px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}

@@ -1,0 +1,10 @@
+.element__caption {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}

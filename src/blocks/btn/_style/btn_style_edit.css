@@ -1,0 +1,14 @@
+.btn_style_edit {
+  background: url(../../../images/pen.svg) center center no-repeat;
+  height: 24px;
+  width: 24px;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 650px) {
+  .btn_style_edit {
+    height: 18px;
+    width: 18px;
+    margin-top: 7px;
+  }
+}
