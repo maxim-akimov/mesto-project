@@ -1,29 +1,13 @@
-<<<<<<< HEAD
-
-
-export default class FormValidator{
-=======
-class FormValidator{
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
+export default  class FormValidator{
     constructor(settings, formEl){
         this._inputSelector = settings.inputSelector;
         this._submitButtonSelector = settings.submitButtonSelector;
-        this._inactiveButtonSelector = settings.inactiveButtonSelector;
+        this._inactiveButtonClass = settings.inactiveButtonClass;
         this._inputErrorClass = settings.inputErrorClass;
         this._errorClass = settings.errorClass;
-<<<<<<< HEAD
-        
 
         this._formEl = formEl;
         this._btnElement = this._formEl.querySelector(this._submitButtonSelector);
-       
-        
-        
-=======
-        this.btnElement = this._formEl.querySelector(this._submitButtonSelector);
-
-        this._formEl = formEl
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
 
     }
     
@@ -37,26 +21,14 @@ class FormValidator{
 
     _setEventListeners() {
         this._inputsList = this._formEl.querySelectorAll(this._inputSelector)
-<<<<<<< HEAD
-        console.log(this._inputsList)
 
         this._formEl.addEventListener('reset', () => {
             this._blockSubmitButton();
         })
-    
+
         this._inputsList.forEach(input => {
             input.addEventListener('input', () => {
-                this._isValid();
-=======
-
-        this._formEl.addEventListener('reset', () => {
-            _blockSubmitButton();
-        })
-    
-        inputsList.forEach(input => {
-            input.addEventListener('input', () => {
-                _isValid();
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
+                this._isValid(input);
             })
         })
     }
@@ -65,11 +37,7 @@ class FormValidator{
 
     _blockSubmitButton() {
         if(!this._btnElement.classList.contains('btn_not-block')) {
-<<<<<<< HEAD
-            this._btnElement.classList.add(this._inactiveButtonSelector);
-=======
             this._btnElement.classList.add(this._inactiveButtonClass);
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
         }
         this._btnElement.disabled = true;
     }
@@ -77,18 +45,13 @@ class FormValidator{
 
 
     _activateSubmitButton() {
-<<<<<<< HEAD
-        this._btnElement.classList.remove(this._inactiveButtonSelector);
-=======
         this._btnElement.classList.remove(this._inactiveButtonClass);
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
         this._btnElement.disabled = false;
     }
 
 
 
-    _isValid() {
-        const inputElement = this._formEl.querySelector('.form__input');
+    _isValid(inputElement) {
         if (inputElement.validity.patternMismatch) {
             inputElement.setCustomValidity(inputElement.dataset.errorMessage);
         } else {
@@ -96,31 +59,18 @@ class FormValidator{
         }
     
         if (!inputElement.validity.valid) {
-<<<<<<< HEAD
             this._showInputError(inputElement, inputElement.validationMessage);
             this._blockSubmitButton();
         } else {
             this._hideInputError(inputElement);
             this._activateSubmitButton();
-=======
-            _showInputError(inputElement, inputElement.validationMessage);
-            _blockSubmitButton();
-        } else {
-            _hideInputError(inputElement);
-            _activateSubmitButton();
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
         }
     }
 
 
 
-<<<<<<< HEAD
     _showInputError(inputElement, errorMessage) {
         const errorElement = this._formEl.querySelector(`.${inputElement.id}-error`);
-=======
-    _showInputError(inputElement) {
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
 
         inputElement.classList.add(this._inputErrorClass);
         errorElement.classList.add(`${this._errorClass}_visible`);
@@ -130,11 +80,7 @@ class FormValidator{
 
 
     _hideInputError(inputElement) {
-<<<<<<< HEAD
         const errorElement = this._formEl.querySelector(`.${inputElement.id}-error`);
-=======
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.classList.remove(`${this._errorClass}_visible`);
         errorElement.textContent = '';

@@ -1,13 +1,10 @@
 import './styles/index.css';
+import { renderLoading } from "./components/utils";
 import Api from './components/Api';
 import UserInfo from './components/UserInfo';
 import Card from './components/Сard';
 import Section from './components/Section';
-<<<<<<< HEAD
 import FormValidator from './components/FormValidator';
-=======
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
-
 import Popup from './components/Popup';
 import PopupWithImage from './components/PopupWithImage';
 import PopupWithForm from './components/PopupWithForm';
@@ -17,7 +14,6 @@ import PopupWithForm from './components/PopupWithForm';
 const cardContainer = document.querySelector('.elements');
 const addCardButton = document.querySelector('.btn_style_add');
 const editProfileButton = document.querySelector('.btn_style_edit');
-<<<<<<< HEAD
 
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__vocation')
@@ -27,10 +23,6 @@ export const cardAboutInput = document.querySelector('#placeLink')
 
 const cardForm = document.querySelector('.form_action_add-card');
 const profileForm = document.querySelector('.form_action_profile-edit')
-
-
-=======
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
 
 
 const api = new Api({
@@ -63,10 +55,6 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then(res => {
-<<<<<<< HEAD
-    
-=======
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
     const section = new Section({
       items: res,
       renderer: (cardItem) => {
@@ -78,7 +66,9 @@ api.getInitialCards()
             popup.openPopup(cardItem);
           },
           handleRemoveClick: () => {
-           //TODO открываем попап подтверждения удаления
+              const popup = new PopupWithForm('.popup_action_delete-confirmation');
+              popup.setEventListeners();
+              popup.openPopup(res);
           }
         },
         '#card-template');
@@ -96,40 +86,73 @@ api.getInitialCards()
 
 
 addCardButton.addEventListener('mousedown', () => {
-<<<<<<< HEAD
+    const popup = new PopupWithForm(
+        '.popup_action_add-card',
+        (formData) => {
+            //renderLoading(true);
+            api.insertCard(formData)
+                .then(res => {
+                    const card = new Card({
+                        data: res,
+                        handleCardClick: () => {
+                            const popup = new PopupWithImage('.popup_action_show-card');
+                            popup.setEventListeners();
+                            popup.openPopup(res);
+                        },
+                        handleRemoveClick: () => {
+                            const popup = new PopupWithForm('.popup_action_delete-confirmation');
+                            popup.setEventListeners();
+                            popup.openPopup(res);
+                        }
+                    }, '#card-template');
+                    const section = new Section({}, '.elements');
+                    section.addItem(card.generate());
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+                .finally(() => {
+                    //renderLoading(false);
+                })
+        });
+
+    popup.setEventListeners();
+    popup.openPopup();
+})
+
+
+/*
+addCardButton.addEventListener('mousedown', () => {
     const popup = new PopupWithForm('.popup_action_add-card', (formData) => {
-      console.log(formData)
       api.insertCard(formData)
         .then(res => {
-        console.log(res)
         const section = new Section({
-          items: res, 
+          items: res,
           renderer: (cardItem) => {
-          const card = new Card({
-            data: cardItem, 
-            handleCardClick: () => {
-            const popup = new PopupWithImage('.popup_action_show-card');
-            popup.setEventListeners();
-            openPopup(cardItem)
-        },
-        handleRemoveClick: () => {}
-      },'#card-template');
-        cardContainer.append(card.generate())
+              console.log(cardItem)
+            const card = new Card({
+                data: cardItem,
+                handleCardClick: () => {
+                    const popup = new PopupWithImage('.popup_action_show-card');
+                    popup.setEventListeners();
+                    popup.openPopup(cardItem)
+                },
+                handleRemoveClick: () => {}
+            },'#card-template');
+              console.log(card.generate())
+        cardContainer.prepend(card.generate());
         }
-      }, 'elements') 
-      section.addItem(card)
-  })
-  .catch(err => {
-    console.error(err);
-  });
+      }, '.elements')
+      section.addItem()
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
     })
     popup.setEventListeners();
     popup.openPopup();
-    const popupValidation = new FormValidator(settings, cardForm)
-        popupValidation.enableValidation()
-        
-})
+})*/
 
 
 
@@ -139,20 +162,23 @@ editProfileButton.addEventListener('mousedown', () => {
     })
     popup.setEventListeners();
     popup.openPopup();
-
-    const popupValidation = new FormValidator(settings, profileForm)
-      popupValidation.enableValidation()
 })
+
+
 //для валидации
 
-const settings = ({
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.btn_style_submit',
-  inactiveButtonClass: 'btn_disabled',
-  inputErrorClass: 'form__input_error',
-  errorClass: 'form__input-error'
+const forms = document.forms;
+Array.from(forms).forEach(form => {
+    const formValidator = new FormValidator({
+        inputSelector: '.form__input',
+        submitButtonSelector: '.btn_style_submit',
+        inactiveButtonClass: 'btn_disabled',
+        inputErrorClass: 'form__input_error',
+        errorClass: 'form__input-error'
+    }, form)
+    formValidator.enableValidation();
 })
+
 
 //попап удаления
 /*const trashButton = document.querySelector('.btn_style_delete');
@@ -162,20 +188,3 @@ trashButton.addEventListener('click', () => {
 
   })
 })*/
-=======
-    const popup = new PopupWithForm('.popup_action_add-card', () => {
-        //TODO submit
-    })
-    popup.setEventListeners();
-    popup.openPopup();
-})
-
-
-editProfileButton.addEventListener('mousedown', () => {
-    const popup = new PopupWithForm('.popup_action_edit-profile', () => {
-        //TODO submit
-    })
-    popup.setEventListeners();
-    popup.openPopup();
-})
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b

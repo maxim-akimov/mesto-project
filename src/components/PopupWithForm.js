@@ -15,26 +15,16 @@ export default class PopupWithForm extends Popup {
         this._inputList.forEach(input => {
             formData[input.name] = input.value
         });
-<<<<<<< HEAD
-        
+
             return formData
         }
-        
-=======
-            return formData
-        }
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
 
     
     setEventListeners() {
         super.setEventListeners()
         this._popupForm.addEventListener('submit', evt => {
-            evt.prevent.default();
-            this._callbackSubmitForm(this._getInputsValue)
-<<<<<<< HEAD
-            console.log(this._getInputsValue)
-=======
->>>>>>> 28c768f0db80f7c1dccb2194f2747dd956440d4b
+            evt.preventDefault();
+            this._callbackSubmitForm(this._getInputsValue())
         })
     }
     closePopup() {
@@ -42,13 +32,4 @@ export default class PopupWithForm extends Popup {
         this._popupForm.reset()
 
     }
-
-     renderLoading = (isLoading) => {
-        if (isLoading) {
-          this._saveButton.textContent = 'Сохранение...'
-        } else {
-          this._saveButton.textContent = 'Сохранить'
-        }
-      
-      }
 }
