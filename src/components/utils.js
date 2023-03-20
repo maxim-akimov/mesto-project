@@ -1,7 +1,7 @@
-export function renderLoading (isLoading) {
+export function renderLoading (isLoading, btnElement) {
     if (isLoading) {
-        this._saveButton.textContent = 'Сохранение...'
+        btnElement.textContent = 'Сохранение...'
     } else {
-        this._saveButton.textContent = 'Сохранить'
+        btnElement.textContent = 'Сохранить'
     }
 }

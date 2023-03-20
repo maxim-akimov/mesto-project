@@ -5,7 +5,6 @@ import UserInfo from './components/UserInfo';
 import Card from './components/Сard';
 import Section from './components/Section';
 import FormValidator from './components/FormValidator';
-import Popup from './components/Popup';
 import PopupWithImage from './components/PopupWithImage';
 import PopupWithForm from './components/PopupWithForm';
 
@@ -14,6 +13,8 @@ import PopupWithForm from './components/PopupWithForm';
 const cardContainer = document.querySelector('.elements');
 const addCardButton = document.querySelector('.btn_style_add');
 const editProfileButton = document.querySelector('.btn_style_edit');
+const forms = document.forms;
+
 
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__vocation')
@@ -52,7 +53,29 @@ api.getUserInfo()
 
 
 
+/**
+ * Создание экземпляра класса PoipupWithImage для реализации
+ * функционала окна просмотра изображения
+ * Создаем только один экземпляр класса, поскольку используется только одно окно для просмотра изображений.
+ * Дальнейшая работа окна (изменение src, link, name) будет реализовываться методами
+ * созданного экземпляра
+ */
+const popupViewImage = new PopupWithImage('.popup_action_show-card');
 
+
+
+/**
+ * Создание экземпляра класса PopupWithForm для реализации
+ * функционала окна просмотра подтверждения удаления.
+ * Создается 1 экземпляр для реализации логики работы окна подтверждения
+ */
+const popupRemoveConfirmation = new PopupWithForm('.popup_action_delete-confirmation');
+
+
+
+/**
+ * Начальная загрузка карточек с сервера
+ */
 api.getInitialCards()
   .then(res => {
     const section = new Section({
@@ -61,21 +84,19 @@ api.getInitialCards()
         const card = new Card({
           data: cardItem,
           handleCardClick: () => {
-            const popup = new PopupWithImage('.popup_action_show-card');
-            popup.setEventListeners();
-            popup.openPopup(cardItem);
+            popupViewImage.setEventListeners();
+            popupViewImage.openPopup(cardItem);
           },
           handleRemoveClick: () => {
-              const popup = new PopupWithForm('.popup_action_delete-confirmation');
-              popup.setEventListeners();
-              popup.openPopup(res);
+            popupRemoveConfirmation.setEventListeners();
+            popupRemoveConfirmation.openPopup(res);
           }
         },
         '#card-template');
-        cardContainer.prepend(card.generate());
+        section.addItem(card.generate());
       }
     },
-    'elements')
+    '.elements')
 
     section.renderItems();
   })
@@ -85,89 +106,62 @@ api.getInitialCards()
 
 
 
-addCardButton.addEventListener('mousedown', () => {
-    const popup = new PopupWithForm(
-        '.popup_action_add-card',
-        (formData) => {
-            //renderLoading(true);
-            api.insertCard(formData)
-                .then(res => {
-                    const card = new Card({
-                        data: res,
-                        handleCardClick: () => {
-                            const popup = new PopupWithImage('.popup_action_show-card');
-                            popup.setEventListeners();
-                            popup.openPopup(res);
-                        },
-                        handleRemoveClick: () => {
-                            const popup = new PopupWithForm('.popup_action_delete-confirmation');
-                            popup.setEventListeners();
-                            popup.openPopup(res);
-                        }
-                    }, '#card-template');
-                    const section = new Section({}, '.elements');
-                    section.addItem(card.generate());
-                })
-                .catch(err => {
-                    console.error(err);
-                })
-                .finally(() => {
-                    //renderLoading(false);
-                })
-        });
+/**
+ * Создание экземпляра класса PopupWithForm для реализации логики
+ * работы окна добавления карточки
+ */
+const popupAddCard = new PopupWithForm(
+  '.popup_action_add-card',
+  (formData, evt) => {
+    renderLoading(true, evt.submitter);
+    api.insertCard(formData)
+      .then(res => {
+        const card = new Card({
+          data: res,
+          handleCardClick: () => {
+            popupViewImage.setEventListeners();
+            popupViewImage.openPopup(res);
+          },
+          handleRemoveClick: () => {
+            popupRemoveConfirmation.setEventListeners();
+            popupRemoveConfirmation.openPopup(res);
+          }
+        }, '#card-template');
+        const section = new Section({}, '.elements');
+        section.addItem(card.generate());
 
-    popup.setEventListeners();
-    popup.openPopup();
-})
-
-
-/*
-addCardButton.addEventListener('mousedown', () => {
-    const popup = new PopupWithForm('.popup_action_add-card', (formData) => {
-      api.insertCard(formData)
-        .then(res => {
-        const section = new Section({
-          items: res,
-          renderer: (cardItem) => {
-              console.log(cardItem)
-            const card = new Card({
-                data: cardItem,
-                handleCardClick: () => {
-                    const popup = new PopupWithImage('.popup_action_show-card');
-                    popup.setEventListeners();
-                    popup.openPopup(cardItem)
-                },
-                handleRemoveClick: () => {}
-            },'#card-template');
-              console.log(card.generate())
-        cardContainer.prepend(card.generate());
-        }
-      }, '.elements')
-      section.addItem()
+        popupAddCard.closePopup();
       })
       .catch(err => {
-        console.error(err);
+          console.error(err);
+      })
+      .finally(() => {
+        renderLoading(false, evt.submitter);
       });
+});
+popupAddCard.setEventListeners();
 
-    })
-    popup.setEventListeners();
-    popup.openPopup();
-})*/
+addCardButton.addEventListener('mousedown', () => {
+  popupAddCard.openPopup();
+});
 
 
+
+/**
+ * Создание экземпляра класса PopupWithForm для реализации логики
+ * работы окна добавления карточки
+ */
+const popupEditProfile = new PopupWithForm('.popup_action_edit-profile', () => {
+  //TODO
+});
+popupEditProfile.setEventListeners();
 
 editProfileButton.addEventListener('mousedown', () => {
-    const popup = new PopupWithForm('.popup_action_edit-profile', () => {
-      //TODO
-    })
-    popup.setEventListeners();
-    popup.openPopup();
-})
+  popupEditProfile.openPopup();
+});
 
 
 //для валидации
-
-const forms = document.forms;
 Array.from(forms).forEach(form => {
     const formValidator = new FormValidator({
         inputSelector: '.form__input',
@@ -178,13 +172,3 @@ Array.from(forms).forEach(form => {
     }, form)
     formValidator.enableValidation();
 })
-
-
-//попап удаления
-/*const trashButton = document.querySelector('.btn_style_delete');
-trashButton.addEventListener('click', () => {
-  const popup = new PopupWithForm('.popup_action_delete-confirmation', () => {
-    //TODO
-
-  })
-})*/
