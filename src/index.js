@@ -14,6 +14,7 @@ const cardContainer = document.querySelector('.elements');
 const addCardButton = document.querySelector('.btn_style_add');
 const editProfileButton = document.querySelector('.btn_style_edit');
 const forms = document.forms;
+const changeAvatarButton = document.querySelector('.profile__avatar-wrap')
 
 
 const profileName = document.querySelector('.profile__name');
@@ -38,12 +39,14 @@ const api = new Api({
 
 api.getUserInfo()
   .then(res => {
+    console.log(res)
     sessionStorage.setItem('user-data', JSON.stringify(res));
 
     const user = new UserInfo({
       nameElementSelector: '.profile__name',
-      aboutElementSelector: '.profile__vocation'
-    }, api);
+      aboutElementSelector: '.profile__vocation',
+      avatarSelector: '.profile__avatar'
+    });
 
     user.renderData();
   })
@@ -151,15 +154,53 @@ addCardButton.addEventListener('mousedown', () => {
  * Создание экземпляра класса PopupWithForm для реализации логики
  * работы окна добавления карточки
  */
-const popupEditProfile = new PopupWithForm('.popup_action_edit-profile', () => {
-  //TODO
+const popupEditProfile = new PopupWithForm('.popup_action_edit-profile', 
+(formData, evt) => {
+  renderLoading(true, evt.submitter);
+  api.updateUserInfo(formData)
+  .then(res => {
+    const userData = new UserInfo({
+      nameElementSelector: '.profile__name',
+      aboutElementSelector: '.profile__vocation'
+    });
+   userData.setUserInfo(res);
+   popupEditProfile.closePopup();
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(() => {
+    renderLoading(false, evt.submitter)
+  })
 });
 popupEditProfile.setEventListeners();
-
 editProfileButton.addEventListener('mousedown', () => {
   popupEditProfile.openPopup();
 });
 
+const popupChangeAvatar = new PopupWithForm('.popup_action_edit-avatar', (formData, evt) => {
+  renderLoading(true, evt.submitter);
+  api.updateAvatar(formData)
+  
+  .then(res => {
+    console.log(res)
+    const userAvatar = new UserInfo({
+      avatarSelector: '.profile__avatar'
+    })
+    userAvatar.setUserInfo(res);
+    popupChangeAvatar.closePopup()
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(() => {
+    renderLoading(false, evt.submitter)
+  })
+ })
+popupChangeAvatar.setEventListeners();
+changeAvatarButton.addEventListener('click', () => {
+  popupChangeAvatar.openPopup()
+})
 
 //для валидации
 Array.from(forms).forEach(form => {

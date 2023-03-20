@@ -1,4 +1,4 @@
-export default class Api {
+ export default class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
@@ -70,7 +70,10 @@ export default class Api {
   updateUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        name: data.profileName,
+        about: data.profileVocation
+      }),
       headers: this._headers
     })
         .then(this._checkResponse);
@@ -81,7 +84,9 @@ export default class Api {
   updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        avatar: data.avatarLink
+      }),
       headers: this._headers
     })
         .then(this._checkResponse);

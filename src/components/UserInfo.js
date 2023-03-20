@@ -1,12 +1,16 @@
+import Api from "./Api";
 export default class UserInfo {
-  constructor({nameElementSelector, aboutElementSelector}, api) {
+  constructor({nameElementSelector, aboutElementSelector, avatarSelector}/*, api*/) {
     this._nameElementSelector = nameElementSelector;
     this._aboutElementSelector = aboutElementSelector;
+    this._avatarSelector = avatarSelector;
 
     this._nameElement = document.querySelector(this._nameElementSelector);
     this._aboutElement = document.querySelector(this._aboutElementSelector);
+    this._avatarElement = document.querySelector(this._avatarSelector)
 
-    this._api = api;
+
+    //this._api = api;
   }
 
 
@@ -15,9 +19,15 @@ export default class UserInfo {
     return JSON.parse(sessionStorage.getItem('user-data'));
   }
 
-
-
   setUserInfo(data) {
+    console.log(data)
+    this._nameElement.textContent = data.name;
+    this._aboutElement.textContent = data.about;
+    this._avatarElement.src = data.avatar;
+    sessionStorage.setItem('user-data', JSON.stringify(data))
+  }
+
+ /*setUserInfo(data) {
     this._api.updateUserInfo(data)
         .then((res) => {
           this._nameElement.textContent = res.name;
@@ -28,7 +38,7 @@ export default class UserInfo {
         .catch((err) => {
           console.error(err);
         })
-  }
+  }*/
 
 
 
@@ -36,5 +46,6 @@ export default class UserInfo {
     this._userData = this.getUserInfo();
     this._nameElement.textContent = this._userData.name;
     this._aboutElement.textContent = this._userData.about;
+    this._avatarElement.src = this._userData.avatar
   }
 }
