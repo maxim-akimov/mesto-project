@@ -8,7 +8,7 @@ export default class Section {
 
 
     addItem(el) {
-        this._container.prepend(el)
+        this._container.append(el)
     }
 
 

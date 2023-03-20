@@ -1,16 +1,19 @@
 export default class Card {
-  constructor({data, handleCardClick, handleRemoveClick}, templateSelector) {
-    ({ 
-      _id: this._id, 
-      name: this._name, 
-      link: this._link, 
-      owner: this._owner, 
-      likes: this._likes 
+  constructor({data, handleCardClick, insertLike, deleteLike, handleRemoveClick}, templateSelector) {
+    ({
+      _id: this._id,
+      name: this._name,
+      link: this._link,
+      owner: this._owner,
+      likes: this._likes
     } = data);
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._insertLike = insertLike;
+    this._deleteLike = deleteLike;
     this._handleRemoveClick = handleRemoveClick;
+    this._hasLike = false;
     this._user = JSON.parse(sessionStorage.getItem('user-data'));
   }
 
@@ -18,37 +21,49 @@ export default class Card {
 
   _getElement() {
     return document.querySelector(this._templateSelector)
-      .content
-      .querySelector('.element')
-      .cloneNode(true);
+        .content
+        .querySelector('.element')
+        .cloneNode(true);
   }
 
 
 
   _setEventListeners() {
     this._element.querySelector('.btn_style_like')
-      .addEventListener('mousedown', () => {
-        this._handleLikeClick();
-      })
+        .addEventListener('mousedown', () => {
+          this._handleLikeClick();
+        })
 
-      this._element.querySelector('.element__image')
+    this._element.querySelector('.element__image')
         .addEventListener('mousedown', () => {
           console.log(this._handleCardClick)
           this._handleCardClick();
-      })
+        })
 
-      this._element.querySelector('.btn_style_delete')
-      .addEventListener('mousedown', () => {
-        this._handleRemoveClick();
-      })
+    this._element.querySelector('.btn_style_delete')
+        .addEventListener('mousedown', () => {
+          this._handleRemoveClick();
+        })
   }
 
 
 
   _handleLikeClick() {
-    this._element.querySelector('.btn_style_like')
-      .classList.toggle('btn_style_like-active');
-      //TODO: запрос к серверу???
+    if(!this._hasLike) {
+      this._insertLike(this._element)
+          .then(res => {
+            this._element.querySelector('.btn_style_like').classList.add('btn_style_like-active');
+            this._element.querySelector('.element__like-counter').textContent = res.likes.length;
+            this._hasLike = true;
+          });
+    } else {
+      this._deleteLike()
+          .then(res => {
+            this._element.querySelector('.btn_style_like').classList.remove('btn_style_like-active');
+            this._element.querySelector('.element__like-counter').textContent = res.likes.length;
+            this._hasLike = false;
+          });
+    }
   }
 
 
@@ -62,12 +77,11 @@ export default class Card {
   _checkLikeState() {
     if(this._likes) {
       for(let i = 0; i < this._likes.length; i++ ) {
-        //if(this._user._id === this._likes[i]._id) {
-        //    return true;
-        //}
+        if(this._user._id === this._likes[i]._id) {
+          this._hasLike = true;
+        }
       }
     }
-    return false;
   }
 
 
@@ -75,6 +89,7 @@ export default class Card {
   generate() {
     this._element = this._getElement();
     this._setEventListeners();
+    this._checkLikeState();
 
     this._element.setAttribute('data-card-id', this._id);
     this._element.querySelector('.element__heading').textContent = this._name;
@@ -85,13 +100,13 @@ export default class Card {
     image.alt = this._name;
 
     if(!this._checkRemovableState()) {
-        this._element.querySelector('.btn_style_delete').remove();
+      this._element.querySelector('.btn_style_delete').remove();
     }
 
-    if(this._checkLikeState()) {
-        cardElement.querySelector('.btn_style_like').classList.add('btn_style_like-active')
+    if(this._hasLike) {
+      this._element.querySelector('.btn_style_like').classList.add('btn_style_like-active')
     }
-  
+
     return this._element;
   }
 }

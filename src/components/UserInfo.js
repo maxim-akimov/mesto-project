@@ -23,22 +23,12 @@ export default class UserInfo {
     console.log(data)
     this._nameElement.textContent = data.name;
     this._aboutElement.textContent = data.about;
-    this._avatarElement.src = data.avatar;
+
+    if(data.avatar) {
+      this._avatarElement.src = data.avatar;
+    }
     sessionStorage.setItem('user-data', JSON.stringify(data))
   }
-
- /*setUserInfo(data) {
-    this._api.updateUserInfo(data)
-        .then((res) => {
-          this._nameElement.textContent = res.name;
-          this._aboutElement.textContent = res.about;
-
-          sessionStorage.setItem('user-data', JSON.stringify(res))
-        })
-        .catch((err) => {
-          console.error(err);
-        })
-  }*/
 
 
 

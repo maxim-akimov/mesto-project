@@ -29,7 +29,20 @@ export default  class FormValidator{
         this._inputsList.forEach(input => {
             input.addEventListener('input', () => {
                 this._isValid(input);
+                if(this._hasInvalidInput()) {
+                    this._blockSubmitButton();
+                }
             })
+        })
+    }
+
+
+
+    _hasInvalidInput() {
+        return Array.from(this._inputsList).some(inputElement => {
+            if (!inputElement.validity.valid) {
+                return true;
+            }
         })
     }
 
