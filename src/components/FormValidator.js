@@ -8,7 +8,6 @@ export default  class FormValidator{
 
         this._formEl = formEl;
         this._btnElement = this._formEl.querySelector(this._submitButtonSelector);
-
     }
     
 
@@ -51,8 +50,8 @@ export default  class FormValidator{
     _blockSubmitButton() {
         if(!this._btnElement.classList.contains('btn_not-block')) {
             this._btnElement.classList.add(this._inactiveButtonClass);
+            this._btnElement.disabled = true;
         }
-        this._btnElement.disabled = true;
     }
 
 

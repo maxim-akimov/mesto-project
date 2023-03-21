@@ -1,6 +1,6 @@
 import Api from "./Api";
 export default class UserInfo {
-  constructor({nameElementSelector, aboutElementSelector, avatarSelector}/*, api*/) {
+  constructor({ nameElementSelector, aboutElementSelector, avatarSelector }/*, api*/) {
     this._nameElementSelector = nameElementSelector;
     this._aboutElementSelector = aboutElementSelector;
     this._avatarSelector = avatarSelector;
@@ -24,7 +24,7 @@ export default class UserInfo {
     this._nameElement.textContent = data.name;
     this._aboutElement.textContent = data.about;
 
-    if(data.avatar) {
+    if (data.avatar) {
       this._avatarElement.src = data.avatar;
     }
     sessionStorage.setItem('user-data', JSON.stringify(data))
