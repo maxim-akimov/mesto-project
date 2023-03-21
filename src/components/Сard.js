@@ -36,7 +36,6 @@ export default class Card {
 
     this._element.querySelector('.element__image')
       .addEventListener('mousedown', () => {
-        console.log(this._handleCardClick)
         this._handleCardClick();
       })
 
@@ -49,21 +48,9 @@ export default class Card {
 
 
   _handleLikeClick() {
-    if (!this._hasLike) {
-      this._insertLike(this._element)
-        .then(res => {
-          this._element.querySelector('.btn_style_like').classList.add('btn_style_like-active');
-          this._element.querySelector('.element__like-counter').textContent = res.likes.length;
-          this._hasLike = true;
-        });
-    } else {
-      this._deleteLike()
-        .then(res => {
-          this._element.querySelector('.btn_style_like').classList.remove('btn_style_like-active');
-          this._element.querySelector('.element__like-counter').textContent = res.likes.length;
-          this._hasLike = false;
-        });
-    }
+    (!this._hasLike)
+      ? this._insertLike()
+      : this._deleteLike();
   }
 
 
@@ -82,6 +69,14 @@ export default class Card {
         }
       }
     }
+  }
+
+
+
+  toggleLike(likes) {
+    this._element.querySelector('.btn_style_like').classList.toggle('btn_style_like-active');
+    this._element.querySelector('.element__like-counter').textContent = likes.length;
+    this._hasLike = !this._hasLike;
   }
 
 
@@ -108,5 +103,11 @@ export default class Card {
     }
 
     return this._element;
+  }
+
+
+
+  remove() {
+    this._element.remove();
   }
 }

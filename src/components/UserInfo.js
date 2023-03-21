@@ -5,22 +5,20 @@ export default class UserInfo {
     this._aboutElementSelector = aboutElementSelector;
     this._avatarSelector = avatarSelector;
 
+    this._userData = JSON.parse(sessionStorage.getItem('user-data'));
+
     this._nameElement = document.querySelector(this._nameElementSelector);
     this._aboutElement = document.querySelector(this._aboutElementSelector);
     this._avatarElement = document.querySelector(this._avatarSelector)
-
-
-    //this._api = api;
   }
 
 
 
   getUserInfo() {
-    return JSON.parse(sessionStorage.getItem('user-data'));
+    return this._userData;
   }
 
   setUserInfo(data) {
-    console.log(data)
     this._nameElement.textContent = data.name;
     this._aboutElement.textContent = data.about;
 
