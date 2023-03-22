@@ -48,23 +48,24 @@ const user = new UserInfo({
 
 
 
-const section = new Section( '.elements');
+const section = new Section( {
+    renderer: (data) => {
+        const card = getCardMarkup(data);
+        section.addItemRevert(card.generate());
+    }
+}, '.elements');
 
 
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([userRes, cardsRes]) => {
-    sessionStorage.setItem('user-data', JSON.stringify(userRes));
-    user.renderData();
-      cardsRes.forEach(cardItem => {
-        section.addItemRevert(
-            getCardMarkup(cardItem)
-        );
+    .then(([userRes, cardsRes]) => {
+        sessionStorage.setItem('user-data', JSON.stringify(userRes));
+        user.renderData();
+        section.renderItems(cardsRes);
     })
-  })
-  .catch(err => {
-    console.error(err);
-  });
+    .catch(err => {
+        console.error(err);
+    });
 
 
 /**
@@ -77,9 +78,7 @@ const popupAddCard = new PopupWithForm(
     renderLoading(true, evt.submitter);
     api.insertCard(formData)
       .then(res => {
-        section.addItem(
-          getCardMarkup(res)
-        );
+        section.addItem(getCardMarkup(res).generate());
         popupAddCard.closePopup();
       })
       .catch(err => {
@@ -210,5 +209,5 @@ function getCardMarkup(cardData) {
       }
     },
     '#card-template');
-  return card.generate();
+  return card;
 }

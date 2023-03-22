@@ -29,7 +29,7 @@ export default class Card {
 
 
   _setEventListeners() {
-    this._element.querySelector('.btn_style_like')
+    this._likeBtn
       .addEventListener('mousedown', () => {
         this._handleLikeClick();
       })
@@ -74,8 +74,8 @@ export default class Card {
 
 
   toggleLike(likes) {
-    this._element.querySelector('.btn_style_like').classList.toggle('btn_style_like-active');
-    this._element.querySelector('.element__like-counter').textContent = likes.length;
+    this._likeBtn.classList.toggle('btn_style_like-active');
+    this._likeCounter.textContent = likes.length;
     this._hasLike = !this._hasLike;
   }
 
@@ -83,12 +83,14 @@ export default class Card {
 
   generate() {
     this._element = this._getElement();
+    this._likeBtn = this._element.querySelector('.btn_style_like');
+    this._likeCounter = this._element.querySelector('.element__like-counter');
+
     this._setEventListeners();
     this._checkLikeState();
 
-    this._element.setAttribute('data-card-id', this._id);
     this._element.querySelector('.element__heading').textContent = this._name;
-    this._element.querySelector('.element__like-counter').textContent = this._likes.length;
+    this._likeCounter.textContent = this._likes.length;
 
     const image = this._element.querySelector('.element__image');
     image.src = this._link;
