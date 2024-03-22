@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -Сr ./dist/* maxim-akimov@158.160.85.224:/home/maxim-akimov/mesto-frontend"
   },
   "repository": {
     "type": "git",
@@ -36,6 +35,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "core-js": "^3.27.2"
+    "core-js": "^3.27.2",
+    "dotenv": "^16.4.5"
   }
 }
