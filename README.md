@@ -5,7 +5,7 @@
 grid-layout и др., верстка форм и полей, верстка модального окна.
 
 ## Технологии
-HTML, CSS, ОфмфЫскшзеБЭМ-методология, flexbox, grid-layout
+HTML, CSS, JavaScript, БЭМ-методология, flexbox, grid-layout
 
 ## Разработчики
 Татьяна Ковпак | tanechka.kovpak@yandex.ru | https://github.com/TatianaKovpak

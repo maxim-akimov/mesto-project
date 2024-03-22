@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
-    "deploy": "npm run build && scp -Сr ./dist/* maxim-akimov@158.160.85.224:/home/maxim-akimov/mesto-frontend"
+    "deploy": "npm run build"
   },
   "repository": {
     "type": "git",
